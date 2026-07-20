@@ -1,0 +1,204 @@
+# Kitchen King — Project Guidelines
+
+> New AI session, or picking this project back up? Read **`PROJECT_LOG.md`** first — it has the project's history, decisions, and current state. This file (`CLAUDE.md`) is the coding conventions only.
+
+## Tech Stack
+
+| Layer | Choice |
+|---|---|
+| Framework | Nuxt 4 (latest) |
+| Animation | Motion.dev (`motion-v`) |
+| Styling | CSS (shared utilities in `assets/css/main.css`) |
+| Language | JavaScript |
+| Package Manager | pnpm |
+
+---
+
+## Project Structure
+
+The folder hierarchy below is enforced. File names within each folder are decided on the go as the project grows — the hierarchy itself is what matters.
+
+```
+/
+├── app/                       # Nuxt 4 srcDir
+│   ├── assets/
+│   │   ├── css/
+│   │   │   └── main.css       # All shared/global styles, variables, utility classes
+│   │   └── (images, video, logo and other static assets)
+│   ├── components/
+│   │   ├── layout/            # App-wide layout pieces (header, footer, nav overlay)
+│   │   ├── sections/          # One component per page section
+│   │   └── ui/                # Reusable UI primitives (buttons, cards, widgets)
+│   ├── composables/           # Shared logic — all prefixed with "use"
+│   ├── pages/                 # One .vue file per route
+│   └── app.vue
+└── nuxt.config.js
+```
+
+---
+
+## Styling Rules
+
+### Single Source of Truth — `assets/css/main.css`
+
+All **shared and repeated CSS** must live here. No exceptions.
+
+```css
+:root {
+  /* ── Colors ── */
+  --color-deep:        #001c18;   /* darkest accent sections */
+  --color-section:     #002e28;   /* default page background */
+  --color-surface:     #004d42;   /* cards, elevated surfaces */
+  --color-gold:        #f5a623;   /* primary accent */
+  --color-gold-light:  #feeec7;
+  --color-gold-200:    #fddb8a;
+  --color-cream:       #f7f3ec;
+  --color-offwhite:    #f0f8f5;   /* primary text */
+  --color-bahamian:    #00c4b0;   /* secondary accent */
+  --color-coral:       #e8624a;
+  --color-sand:        #f5edd8;
+  --color-muted:       #8bb5a0;
+
+  /* ── Typography ── */
+  --font-display: 'Hanken Grotesk', sans-serif;   /* headings */
+  --font-body:    'Inter', sans-serif;             /* body text */
+
+  /* ── Easing ── */
+  --ease-out-expo:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+  --ease-bounce:      cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* ── Misc ── */
+  --radius-md: 8px;
+  --transition-base: 0.3s ease;
+}
+```
+
+### What goes WHERE
+
+| Style type | Location |
+|---|---|
+| Global vars, resets, utility classes | `assets/css/main.css` |
+| Component-specific styles | `<style scoped>` inside the `.vue` file |
+| Repeated patterns (buttons, overlays, shared blocks) | `main.css` as a reusable class |
+
+---
+
+## Animation — Motion.dev
+
+Motion.dev is the only JavaScript animation library used in this project, via **`motion-v`** (the official Vue package — `@motionone/vue` is deprecated, do not use it).
+
+### Setup
+```bash
+pnpm add motion-v @vueuse/core
+```
+Registered as a Nuxt module in `nuxt.config.js` (`modules: ['motion-v/nuxt']`), which auto-imports `Motion`, `AnimatePresence`, etc. and utilities like `useReducedMotion` — no manual imports needed in components.
+
+### Composable pattern
+
+All reusable animation configs live in a composable inside `composables/`. Components consume configs from there — they do not define their own. Configs must respect `prefers-reduced-motion` via `useReducedMotion()`.
+
+```js
+// composables/useAnimation.js
+export const useAnimation = () => {
+  const prefersReduced = useReducedMotion()
+
+  const fadeUp = computed(() => prefersReduced.value
+    ? { initial: false }
+    : {
+        initial: { opacity: 0, y: 40 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+      })
+
+  const staggerContainer = computed(() => prefersReduced.value
+    ? {}
+    : { transition: { staggerChildren: 0.1 } })
+
+  return { fadeUp, staggerContainer }
+}
+```
+
+```vue
+<script setup>
+const { fadeUp } = useAnimation()
+</script>
+
+<template>
+  <Motion v-bind="fadeUp">
+    <slot />
+  </Motion>
+</template>
+```
+
+### Guidelines
+
+- Use Motion.dev for all entrance, scroll-triggered, and interactive animations
+- Pure CSS `@keyframes` is allowed only for infinite/looping animations (e.g. a scrolling marquee ticker) — these go in `main.css`
+- Never place animation logic directly inside `<template>` — always go through the composable
+- Respect `prefers-reduced-motion`: no motion on elements when it is set
+
+---
+
+## Component Rules
+
+1. **One responsibility per component** — a card renders one card, never the grid around it
+2. **Props over hardcoded content** — all data is passed via props, nothing hardcoded in the template
+3. **No inline styles** — CSS classes only, always
+4. **Composables for logic** — no business logic inside `<template>`
+5. **`<script setup>` syntax** — always use Composition API with `<script setup>`
+6. **150-line limit** — if a component grows past 150 lines, split it
+
+---
+
+## Pages
+
+Each page file only assembles section components. No styles, no logic in page files.
+
+```vue
+<template>
+  <AppHeader />
+  <main>
+    <!-- section components assembled here -->
+  </main>
+  <AppFooter />
+</template>
+```
+
+---
+
+## SEO
+
+Use Nuxt's built-in `useSeoMeta()` in every page file.
+
+```js
+useSeoMeta({
+  title: 'Kitchen King | Caribbean Restaurant, Nassau Bahamas',
+  description: 'Fresh Caribbean flavors in Nassau, Bahamas. Dine in, order online, or reserve a table.',
+  ogTitle: 'Kitchen King',
+  ogDescription: 'Fresh Caribbean flavors in Nassau, Bahamas.',
+})
+```
+
+---
+
+## Code Quality
+
+- No unused imports
+- All component file names in `PascalCase`
+- All CSS class names in `kebab-case`
+- All composable files prefixed with `use`
+- No inline styles, ever
+- 150-line component limit — split if exceeded
+
+---
+
+## Project Context
+
+| | |
+|---|---|
+| Restaurant | Kitchen King |
+| Location | West Bay St · Nassau, Bahamas |
+| Cuisine | Caribbean / Bahamian |
+| Primary CTA | "Order Now" / "Reserve a Table" |
+| Static assets | All sourced from `html/assets/` (logo, video, images) |

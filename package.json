@@ -1,0 +1,24 @@
+{
+  "name": "kitchen-king",
+  "version": "0.1.0",
+  "description": "Kitchen King restaurant website (Nassau, Bahamas) — Nuxt 4 + motion-v.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@vueuse/core": "^14.3.0",
+    "motion-v": "^2.3.0",
+    "nuxt": "^4.4.8",
+    "vue": "^3.5.39",
+    "vue-router": "^5.1.0"
+  },
+  "devDependencies": {
+    "@nuxt/fonts": "^0.14.0"
+  }
+}

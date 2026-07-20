@@ -1,0 +1,73 @@
+:root {
+  /* ── Colors ── */
+  --color-deep:        #001c18;   /* darkest accent sections */
+  --color-section:     #002e28;   /* default page background */
+  --color-surface:     #004d42;   /* cards, elevated surfaces */
+  --color-gold:        #f5a623;   /* primary accent */
+  --color-gold-light:  #feeec7;
+  --color-gold-200:    #fddb8a;
+  --color-cream:       #f7f3ec;
+  --color-offwhite:    #f0f8f5;   /* primary text */
+  --color-bahamian:    #00c4b0;   /* secondary accent */
+  --color-coral:       #e8624a;
+  --color-sand:        #f5edd8;
+  --color-muted:       #8bb5a0;
+
+  /* ── Typography ── */
+  --font-display: 'Hanken Grotesk', sans-serif;   /* headings */
+  --font-body:    'Inter', sans-serif;             /* body text */
+
+  /* ── Easing ── */
+  --ease-out-expo:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+  --ease-bounce:      cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* ── Misc ── */
+  --radius-md: 8px;
+  --transition-base: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-section);
+  color: var(--color-offwhite);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Marquee ticker ── */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  display: flex;
+  width: fit-content;
+  animation: ticker-scroll 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation-play-state: paused;
+  }
+}

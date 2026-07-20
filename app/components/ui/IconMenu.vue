@@ -1,0 +1,7 @@
+<template>
+  <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M1 4H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    <path d="M1 8H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+    <path d="M1 12H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+  </svg>
+</template>
