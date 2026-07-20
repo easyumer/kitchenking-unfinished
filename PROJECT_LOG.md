@@ -19,7 +19,7 @@ Last updated: 2026-07-20.
 - **Every other route is a placeholder.** `/menu`, `/order`, `/gallery`, `/about`, `/portfolio`, `/contact`, `/merge` all render the same `ComingSoonSection` component with no real content.
 - **No backend exists.** No forms, no cart, no CMS. See README "Handoff notes" for the full list of what's decorative vs. real.
 - **Deployed and live**: https://kitchen-king-ecru.vercel.app — Vercel project already linked (`.vercel/project.json`), deploy via `vercel deploy --prod --yes`.
-- **No git history.** This repo has never been committed. Whoever picks this up next should make a clean initial commit.
+- **Pushed to GitHub**: https://github.com/easyumer/kitchen-king (private), `main` branch. History is a single squashed "Initial commit" covering everything up to this point — it does not reflect the incremental, section-by-section way this was actually built. That narrative is what the rest of this file is for.
 - **Known content bug, live on production**: every image in the Specials grid (`app/assets/images/special-*.jpg`) is a mismatched stock photo — sushi, ramen, curry+naan, a cocktail, a poke bowl, a dessert — labeled as oxtail/jerk chicken/plantain dishes. None of it is Caribbean food. Needs real photography. Full detail in README.
 
 ## Homepage section order (top to bottom)
@@ -43,7 +43,7 @@ Last updated: 2026-07-20.
 
 - Specials images are wrong (see "Current state" above) — needs real photography.
 - `/merge` route purpose unclear.
-- No git commits yet.
+- `design-refs/homepage/02-hero/source-hero.gif` is 57 MB, over GitHub's 50 MB warning threshold (not blocking, just noisy on push). Worth Git LFS if `design-refs/` grows.
 - Vercel's build log shows it auto-resolving a pnpm version rather than reading an explicit pin (`packageManager` field isn't set in `package.json`). Not currently broken — deliberately left unpinned rather than guessing a version and risking the working build, per README.
 - Menu and Specials content (dishes, prices, descriptions) are hardcoded arrays inside the section components. First candidate for a real CMS/database if editing the menu shouldn't require a code change.
 

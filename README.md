@@ -3,6 +3,7 @@
 Marketing website for Kitchen King, a Caribbean restaurant on West Bay St, Nassau, Bahamas. Built as a static/SSR marketing site — no backend exists yet, which is what this README is mainly here to hand off.
 
 Live: https://kitchen-king-ecru.vercel.app
+Repo: https://github.com/easyumer/kitchen-king (private)
 
 ## Tech stack
 
@@ -81,6 +82,7 @@ The Vercel project is already linked (`.vercel/project.json`) and deploys via `v
 
 ### 5. Known rough edges
 
-- No git history yet — this repo has never been committed. Worth a clean initial commit before handoff.
+- Git history starts from a single squashed "Initial commit" — everything up to the handoff point landed in one commit, not the incremental history of how each section was actually built. That build-by-build narrative lives in `PROJECT_LOG.md` instead.
+- `design-refs/homepage/02-hero/source-hero.gif` is 57 MB — under GitHub's 100 MB hard limit but over its 50 MB warning threshold, so every push involving it prints a large-file warning (not an error). If this repo's `design-refs/` grows much more, worth moving to Git LFS.
 - `pnpm-lock.yaml` was generated locally; Vercel's build log shows it auto-resolving a pnpm version rather than reading a pin. Not currently broken, but worth explicitly pinning a `packageManager` field in `package.json` once you've settled on a pnpm version.
 - No tests exist.
