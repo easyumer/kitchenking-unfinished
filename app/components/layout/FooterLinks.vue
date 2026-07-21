@@ -43,14 +43,7 @@ const navLinks = [
       </div>
     </div>
 
-    <div class="footer-links__col">
-      <h3 class="footer-links__title">Follow Us</h3>
-      <div class="footer-links__socials">
-        <a :href="social.facebook" class="footer-links__icon" aria-label="Facebook"><IconFacebook /></a>
-        <a :href="social.instagram" class="footer-links__icon" aria-label="Instagram"><IconInstagram /></a>
-      </div>
-      <p class="footer-links__copyright">© 2025 Kitchen King. All rights reserved.</p>
-    </div>
+    <FooterSocials :social="social" />
   </div>
 </template>
 
@@ -131,44 +124,6 @@ const navLinks = [
   text-align: right;
 }
 
-.footer-links__socials {
-  display: flex;
-  gap: 12px;
-}
-
-.footer-links__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 24px;
-  background-color: rgba(252, 254, 254, 0.1);
-  border: 1px solid rgba(252, 254, 254, 0.22);
-  color: var(--color-offwhite);
-  transition: background-color 0.3s var(--ease-out-expo), border-color 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
-}
-
-.footer-links__icon svg {
-  width: 18px;
-  height: 18px;
-}
-
-.footer-links__icon:hover {
-  background-color: var(--color-gold);
-  border-color: var(--color-gold);
-  color: var(--color-deep);
-}
-
-.footer-links__copyright {
-  margin-top: 96px;
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 1.33;
-  color: rgba(252, 254, 254, 0.5);
-}
-
 @media (max-width: 900px) {
   .footer-links {
     flex-direction: column;
@@ -185,10 +140,6 @@ const navLinks = [
 
   .footer-links__hours {
     text-align: left;
-  }
-
-  .footer-links__copyright {
-    margin-top: 24px;
   }
 }
 </style>

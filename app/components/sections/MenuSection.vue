@@ -96,7 +96,7 @@ function formatIndex(i) {
   width: 100%;
   max-width: 1208px;
   padding-bottom: 16px;
-  border-bottom: 1px solid rgba(245, 166, 35, 0.18);
+  border-bottom: 1px solid rgba(255, 202, 89, 0.18);
 }
 
 .menu__title h2 {

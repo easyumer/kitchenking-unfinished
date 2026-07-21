@@ -91,7 +91,7 @@ const prefersReduced = useReducedMotion()
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(0deg, rgba(0, 28, 24, 0.45) 0%, rgba(0, 28, 24, 0) 100%);
+  background: linear-gradient(0deg, rgba(7, 7, 7, 0.45) 0%, rgba(7, 7, 7, 0) 100%);
 }
 
 @media (max-width: 768px) {

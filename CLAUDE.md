@@ -46,14 +46,14 @@ All **shared and repeated CSS** must live here. No exceptions.
 ```css
 :root {
   /* ── Colors ── */
-  --color-deep:        #001c18;   /* darkest accent sections */
-  --color-section:     #002e28;   /* default page background */
+  --color-deep:        #070707;   /* darkest accent sections */
+  --color-section:     #1a1a1a;   /* default page background */
   --color-surface:     #004d42;   /* cards, elevated surfaces */
-  --color-gold:        #f5a623;   /* primary accent */
-  --color-gold-light:  #feeec7;
+  --color-gold:        #ffca59;   /* primary accent */
+  --color-gold-light:  #ffefad;
   --color-gold-200:    #fddb8a;
   --color-cream:       #f7f3ec;
-  --color-offwhite:    #f0f8f5;   /* primary text */
+  --color-offwhite:    #fafafa;   /* primary text */
   --color-bahamian:    #00c4b0;   /* secondary accent */
   --color-coral:       #e8624a;
   --color-sand:        #f5edd8;
@@ -147,21 +147,19 @@ const { fadeUp } = useAnimation()
 3. **No inline styles** — CSS classes only, always
 4. **Composables for logic** — no business logic inside `<template>`
 5. **`<script setup>` syntax** — always use Composition API with `<script setup>`
-6. **150-line limit** — if a component grows past 150 lines, split it
+6. **150-line limit** — if a component grows past 150 lines, split it. If a component that supports both hover (mouse) and click (touch/keyboard) triggers for the same visual states grows past the limit, check `PROJECT_LOG.md` before forcing a split — that duplication (each state written once for `:hover` and once for a JS-driven active class) is sometimes inherent to the feature, not a sign the component is doing too much.
 
 ---
 
 ## Pages
 
-Each page file only assembles section components. No styles, no logic in page files.
+`AppHeader`, `NavOverlay`, and `AppFooter` are mounted once, globally, in `app.vue` — not per page. Each page file only assembles section components inside `<main>`. No styles, no logic, no layout chrome in page files.
 
 ```vue
 <template>
-  <AppHeader />
   <main>
     <!-- section components assembled here -->
   </main>
-  <AppFooter />
 </template>
 ```
 
@@ -201,4 +199,4 @@ useSeoMeta({
 | Location | West Bay St · Nassau, Bahamas |
 | Cuisine | Caribbean / Bahamian |
 | Primary CTA | "Order Now" / "Reserve a Table" |
-| Static assets | All sourced from `html/assets/` (logo, video, images) |
+| Static assets | All sourced from `app/assets/` (logo, video, images) |

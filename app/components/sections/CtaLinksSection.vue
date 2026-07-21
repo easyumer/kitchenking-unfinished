@@ -22,7 +22,6 @@ const links = [
 .cta-links {
   display: flex;
   flex-direction: column;
-  border-radius: 48px;
   overflow: hidden;
 }
 
@@ -33,7 +32,7 @@ const links = [
   justify-content: space-between;
   padding: 32px 48px;
   background-color: var(--color-deep);
-  border-bottom: 1px solid rgba(245, 166, 35, 0.12);
+  border-bottom: 1px solid rgba(255, 202, 89, 0.12);
   overflow: hidden;
 }
 
@@ -43,12 +42,8 @@ const links = [
 
 .cta-links__pill {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 81.77%;
-  height: 100%;
+  inset: 0;
   background-color: var(--color-gold);
-  border-radius: 0 999px 999px 0;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s var(--ease-out-expo);
@@ -84,6 +79,12 @@ const links = [
   width: 64px;
   height: 64px;
   color: var(--color-gold);
+  transition: color 0.5s var(--ease-out-expo);
+}
+
+.cta-links__row:hover .cta-links__arrow,
+.cta-links__row:focus-visible .cta-links__arrow {
+  color: var(--color-deep);
 }
 
 @media (max-width: 768px) {

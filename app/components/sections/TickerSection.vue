@@ -36,7 +36,7 @@
 
 .ticker__text--light {
   font-weight: 300;
-  color: rgba(240, 248, 245, 0.8);
+  color: rgba(250, 250, 250, 0.8);
 }
 
 .ticker__text--bold {

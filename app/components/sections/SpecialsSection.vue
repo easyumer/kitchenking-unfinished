@@ -43,11 +43,14 @@ const rows = [
   ]
 ]
 
-const activeIndexPerRow = ref(rows.map(() => null))
+// A single key (not one active index per row) so at most one card in the
+// whole grid can be active at a time — this also drives touch/keyboard
+// activation; mouse users get the same effect instantly via CSS :hover below.
+const activeKey = ref(null)
 
 function toggleCard(rowIndex, colIndex) {
-  activeIndexPerRow.value[rowIndex] =
-    activeIndexPerRow.value[rowIndex] === colIndex ? null : colIndex
+  const key = `${rowIndex}-${colIndex}`
+  activeKey.value = activeKey.value === key ? null : key
 }
 </script>
 
@@ -60,8 +63,8 @@ function toggleCard(rowIndex, colIndex) {
         :image="dish.image"
         :title="dish.title"
         :description="dish.description"
-        :active="activeIndexPerRow[rowIndex] === colIndex"
-        :dimmed="activeIndexPerRow[rowIndex] !== null && activeIndexPerRow[rowIndex] !== colIndex"
+        :active="activeKey === `${rowIndex}-${colIndex}`"
+        :dimmed="activeKey !== null && activeKey !== `${rowIndex}-${colIndex}`"
         @toggle="toggleCard(rowIndex, colIndex)"
       />
     </div>
@@ -83,6 +86,12 @@ function toggleCard(rowIndex, colIndex) {
 .specials__row {
   display: flex;
   gap: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .specials:has(:deep(.specials-card:hover)) :deep(.specials-card:not(:hover)) {
+    filter: brightness(0.55);
+  }
 }
 
 @media (max-width: 768px) {

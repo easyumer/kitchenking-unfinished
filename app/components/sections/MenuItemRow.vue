@@ -50,7 +50,7 @@ defineEmits(['toggle'])
 
 <style scoped>
 .menu-item {
-  border-bottom: 1px solid rgba(245, 166, 35, 0.12);
+  border-bottom: 1px solid rgba(255, 202, 89, 0.12);
   cursor: pointer;
   outline: none;
 }
@@ -59,6 +59,15 @@ defineEmits(['toggle'])
   display: flex;
   align-items: flex-start;
   gap: 40px;
+  padding-bottom: 0;
+  transition: padding-bottom 0.6s var(--ease-out-expo);
+}
+
+/* Matches the 20px gap the parent's flex `gap` puts above this row (MenuSection.vue
+   .menu-category__items), so the image sits centered between the two divider lines
+   instead of flush against the bottom one. */
+.menu-item--active .menu-item__main {
+  padding-bottom: 20px;
 }
 
 .menu-item__left {
@@ -79,7 +88,7 @@ defineEmits(['toggle'])
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 12px;
-  color: rgba(245, 166, 35, 0.28);
+  color: rgba(255, 202, 89, 0.28);
 }
 
 .menu-item__title {
@@ -229,6 +238,10 @@ defineEmits(['toggle'])
 
   .menu-item:hover .menu-item__visual-wrap {
     height: 292px;
+  }
+
+  .menu-item:hover .menu-item__main {
+    padding-bottom: 20px;
   }
 
   .menu-item:hover .menu-item__visual {

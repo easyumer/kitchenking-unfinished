@@ -1,13 +1,13 @@
 :root {
   /* ── Colors ── */
-  --color-deep:        #001c18;   /* darkest accent sections */
-  --color-section:     #002e28;   /* default page background */
+  --color-deep:        #070707;   /* darkest accent sections */
+  --color-section:     #1a1a1a;   /* default page background */
   --color-surface:     #004d42;   /* cards, elevated surfaces */
-  --color-gold:        #f5a623;   /* primary accent */
-  --color-gold-light:  #feeec7;
+  --color-gold:        #ffca59;   /* primary accent */
+  --color-gold-light:  #ffefad;
   --color-gold-200:    #fddb8a;
   --color-cream:       #f7f3ec;
-  --color-offwhite:    #f0f8f5;   /* primary text */
+  --color-offwhite:    #fafafa;   /* primary text */
   --color-bahamian:    #00c4b0;   /* secondary accent */
   --color-coral:       #e8624a;
   --color-sand:        #f5edd8;
