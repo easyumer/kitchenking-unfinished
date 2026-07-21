@@ -3,10 +3,12 @@ defineProps({
   variant: { type: String, default: 'outline' }, // 'outline' | 'accent' | 'solid'
   to: { type: String, default: null }
 })
+
+const NuxtLink = resolveComponent('NuxtLink')
 </script>
 
 <template>
-  <component :is="to ? 'NuxtLink' : 'button'" :to="to" class="pill-button" :class="`pill-button--${variant}`">
+  <component :is="to ? NuxtLink : 'button'" :to="to" class="pill-button" :class="`pill-button--${variant}`">
     <slot />
   </component>
 </template>
