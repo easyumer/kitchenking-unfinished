@@ -5,9 +5,8 @@ const isNavOpen = ref(false)
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <AppHeader @toggle-nav="isNavOpen = !isNavOpen" />
+    <MenuTrigger @open="isNavOpen = true" />
     <NavOverlay :open="isNavOpen" @close="isNavOpen = false" />
     <NuxtPage />
-    <AppFooter />
   </div>
 </template>

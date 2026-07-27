@@ -8,14 +8,13 @@ useSeoMeta({
 </script>
 
 <template>
-  <main>
-    <HeroSection />
-    <TickerSection />
-    <StorySection />
-    <SpecialsSection />
-    <MenuSection />
-    <CtaLinksSection />
-    <SignatureMarqueeSection />
-    <FaqSection />
+  <main class="home">
+    <!-- Homepage rebuilt from scratch. New sections get assembled here. -->
   </main>
 </template>
+
+<style scoped>
+.home {
+  min-height: 100vh;
+}
+</style>
