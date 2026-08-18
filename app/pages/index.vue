@@ -9,7 +9,12 @@ useSeoMeta({
 
 <template>
   <main class="home">
-    <!-- Homepage rebuilt from scratch. New sections get assembled here. -->
+    <HeroSection />
+    <StorySection />
+    <ExploreMenuSection />
+    <BestsellersSection />
+    <DealsSection />
+    <FreshTakeSection />
   </main>
 </template>
 

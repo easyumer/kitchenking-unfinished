@@ -1,13 +1,14 @@
 :root {
   /* ── Colors ── */
-  --color-deep:        #070707;   /* darkest accent sections */
-  --color-section:     #1a1a1a;   /* default page background */
+  --color-deep:        #070707;   /* universal page background */
+  --color-section:     #1a1a1a;   /* lighter section blocks laid on top */
   --color-surface:     #004d42;   /* cards, elevated surfaces */
   --color-gold:        #ffca59;   /* primary accent */
   --color-gold-light:  #ffefad;
   --color-gold-200:    #fddb8a;
   --color-cream:       #f7f3ec;
   --color-offwhite:    #fafafa;   /* primary text */
+  --color-white:       #ffffff;   /* pure white — headline text on photo/video */
   --color-bahamian:    #00c4b0;   /* secondary accent */
   --color-coral:       #e8624a;
   --color-sand:        #f5edd8;
@@ -33,8 +34,17 @@
   box-sizing: border-box;
 }
 
+html, body {
+  /* Safety net: no single section should ever be able to create a page-level
+     horizontal scrollbar (e.g. an element that intentionally overhangs past
+     its own section's edge, like the hero's Order badge). */
+  overflow-x: hidden;
+}
+
 body {
-  background-color: var(--color-section);
+  /* Universal page background. Sections that need a different colour lay their
+     own block on top of this — #070707 is the baseline everything sits on. */
+  background-color: var(--color-deep);
   color: var(--color-offwhite);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;

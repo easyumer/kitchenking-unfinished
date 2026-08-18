@@ -1,0 +1,136 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - status [ref=e174]: Kitchen King | Caribbean Restaurant, Nassau Bahamas
+    - paragraph [ref=e5]:
+      - generic [ref=e7]: "Timings: 11:00 AM - 8:00 PM"
+    - banner [ref=e8]:
+      - link "Kitchen King home" [ref=e9] [cursor=pointer]:
+        - /url: /
+        - img "Kitchen King" [ref=e10]
+      - generic [ref=e11]:
+        - button "Nassau, Bahamas" [ref=e12] [cursor=pointer]
+        - button "Cart, 0 items" [ref=e17] [cursor=pointer]:
+          - generic [ref=e18]: "0"
+        - button "Open menu" [ref=e23] [cursor=pointer]:
+          - generic [ref=e24]: Menu
+    - main [ref=e26]:
+      - generic [ref=e27]:
+        - heading "Chef-Crafted Comfort Food" [level=1] [ref=e31]: Chef-CraftedComfort Food
+        - link "Order Online" [ref=e33] [cursor=pointer]:
+          - /url: /order
+      - generic [ref=e38]:
+        - img "Ingredients and prep counter at Kitchen King" [ref=e39]
+        - generic [ref=e40]:
+          - heading "Kitchen King brings together handcrafted" [level=2] [ref=e41]
+          - generic [ref=e42]:
+            - paragraph [ref=e43]: burgers, Caribbean-inspired bowls, crispy wings, and crave-worthy sides, all created under the culinary direction of renowned private chef Donovan Smith.
+            - paragraph [ref=e44]: Whether you're grabbing lunch on the go or satisfying a late-night craving, every order is made fresh and packed with flavor.
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - heading "Explore Menu" [level=2] [ref=e47]
+          - generic [ref=e48]:
+            - button "Previous" [disabled] [ref=e49]
+            - button "Next" [ref=e52] [cursor=pointer]
+        - generic [ref=e55]:
+          - link "Burgers & Sandwiches Burgers & Sandwiches" [ref=e56] [cursor=pointer]:
+            - /url: /menu
+            - img "Burgers & Sandwiches" [ref=e57]
+            - generic [ref=e58]: Burgers & Sandwiches
+          - link "Caribbean Bowls Caribbean Bowls" [ref=e61] [cursor=pointer]:
+            - /url: /menu
+            - img "Caribbean Bowls" [ref=e62]
+            - generic [ref=e63]: Caribbean Bowls
+          - link "Wings Wings" [ref=e66] [cursor=pointer]:
+            - /url: /menu
+            - img "Wings" [ref=e67]
+            - generic [ref=e68]: Wings
+          - link "Desserts Desserts" [ref=e71] [cursor=pointer]:
+            - /url: /menu
+            - img "Desserts" [ref=e72]
+            - generic [ref=e73]: Desserts
+        - generic [ref=e76]:
+          - button "Go to slide 1" [ref=e77] [cursor=pointer]
+          - button "Go to slide 2" [ref=e78] [cursor=pointer]
+          - button "Go to slide 3" [ref=e79] [cursor=pointer]
+          - button "Go to slide 4" [ref=e80] [cursor=pointer]
+      - generic [ref=e81]:
+        - heading "Bestsellers" [level=2] [ref=e82]
+        - generic [ref=e83]:
+          - article [ref=e84]:
+            - img "KitchenKing Smash Burger" [ref=e85]
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - generic [ref=e88]:
+                  - generic [ref=e89]: $11.99
+                  - heading "KitchenKing Smash Burger" [level=3] [ref=e90]
+                - paragraph [ref=e91]: Double smashed beef patties, American cheese, grilled onions, signature house sauce, served on a soft buttery brioche bun.
+              - button "Add to Cart" [ref=e92] [cursor=pointer]
+          - article [ref=e95]:
+            - generic [ref=e96]: Photo coming soon
+            - generic [ref=e98]:
+              - generic [ref=e99]:
+                - generic [ref=e100]:
+                  - generic [ref=e101]: $3.99
+                  - heading "Classic Lemonade" [level=3] [ref=e102]
+                - paragraph [ref=e103]: Fresh-squeezed lemons, lightly sweetened and served ice-cold.
+              - button "Add to Cart" [ref=e104] [cursor=pointer]
+          - article [ref=e107]:
+            - img "Jerk Chicken Sliders" [ref=e108]
+            - generic [ref=e109]:
+              - generic [ref=e110]:
+                - generic [ref=e111]:
+                  - generic [ref=e112]: $11.99
+                  - heading "Jerk Chicken Sliders" [level=3] [ref=e113]
+                - paragraph [ref=e114]: Slow-marinated jerk chicken, pickled slaw, and spicy mayo on soft mini buns.
+              - button "Add to Cart" [ref=e115] [cursor=pointer]
+          - article [ref=e118]:
+            - generic [ref=e119]: Photo coming soon
+            - generic [ref=e121]:
+              - generic [ref=e122]:
+                - generic [ref=e123]:
+                  - generic [ref=e124]: $7.99
+                  - heading "Truffle Parmesan Loaded Fries" [level=3] [ref=e125]
+                - paragraph [ref=e126]: Crispy fries tossed in truffle oil and shaved parmesan, finished with fresh herbs.
+              - button "Add to Cart" [ref=e127] [cursor=pointer]
+          - article [ref=e130]:
+            - img "Char Grilled Chicken Bowl" [ref=e131]
+            - generic [ref=e132]:
+              - generic [ref=e133]:
+                - generic [ref=e134]:
+                  - generic [ref=e135]: $15.99
+                  - heading "Char Grilled Chicken Bowl" [level=3] [ref=e136]
+                - paragraph [ref=e137]: Char-grilled chicken, quinoa, roasted pineapple, tomato, and avocado.
+              - button "Add to Cart" [ref=e138] [cursor=pointer]
+          - article [ref=e141]:
+            - img "Sweet Plantain Soft Serve" [ref=e142]
+            - generic [ref=e143]:
+              - generic [ref=e144]:
+                - generic [ref=e145]:
+                  - generic [ref=e146]: $3.99
+                  - heading "Sweet Plantain Soft Serve" [level=3] [ref=e147]
+                - paragraph [ref=e148]: Creamy soft serve infused with caramelized sweet plantain.
+              - button "Add to Cart" [ref=e149] [cursor=pointer]
+          - article [ref=e152]:
+            - img "Steak Bowl" [ref=e153]
+            - generic [ref=e154]:
+              - generic [ref=e155]:
+                - generic [ref=e156]:
+                  - generic [ref=e157]: $15.99
+                  - heading "Steak Bowl" [level=3] [ref=e158]
+                - paragraph [ref=e159]: Grilled steak, quinoa, roasted pineapple, tomato, and avocado.
+              - button "Add to Cart" [ref=e160] [cursor=pointer]
+          - article [ref=e163]:
+            - img "6 Piece Crispy Wings" [ref=e164]
+            - generic [ref=e165]:
+              - generic [ref=e166]:
+                - generic [ref=e167]:
+                  - generic [ref=e168]: $9.99
+                  - heading "6 Piece Crispy Wings" [level=3] [ref=e169]
+                - paragraph [ref=e170]: Six crispy fried wings served with a side of house hot sauce.
+              - button "Add to Cart" [ref=e171] [cursor=pointer]
+  - generic [ref=e175]:
+    - button "Toggle Nuxt DevTools" [ref=e176] [cursor=pointer]
+    - generic "Page load time" [ref=e180]:
+      - generic [ref=e181]: "52"
+      - generic [ref=e182]: ms
+    - button "Toggle Component Inspector" [ref=e184] [cursor=pointer]

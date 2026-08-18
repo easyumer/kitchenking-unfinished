@@ -8,6 +8,9 @@ export const useSiteConfig = () => ({
     phoneHref: 'tel:+12420000000',
     addressLines: ['West Bay St', 'Nassau, Bahamas']
   },
+  // Short single-line hours shown in the nav bar timings strip. The full weekly
+  // breakdown lives in `hours` below (used by the footer).
+  timings: '11:00 AM - 8:00 PM',
   hours: [
     { days: 'Monday – Thursday', time: '11:00 am – 10:00 pm' },
     { days: 'Friday – Saturday', time: '11:00 am – 11:00 pm' },

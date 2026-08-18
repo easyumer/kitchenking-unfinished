@@ -29,14 +29,17 @@ export const useAnimation = () => {
     ? {}
     : { transition: { staggerChildren: 0.1 } })
 
-  const slideInLeft = computed(() => prefersReduced.value
+  // Enters from the right — matches the nav overlay's trigger (the Menu pill
+  // sits at the header's right edge), so the panel arrives from the same side
+  // as the button that opened it instead of crossing the screen.
+  const slideInRight = computed(() => prefersReduced.value
     ? { initial: false }
     : {
-        initial: { x: '-100%', opacity: 0 },
+        initial: { x: '100%', opacity: 0 },
         animate: { x: 0, opacity: 1 },
-        exit: { x: '-100%', opacity: 0 },
+        exit: { x: '100%', opacity: 0 },
         transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
       })
 
-  return { fadeUp, fadeIn, riseUp, staggerContainer, slideInLeft }
+  return { fadeUp, fadeIn, riseUp, staggerContainer, slideInRight }
 }

@@ -3,7 +3,7 @@ defineProps({
   open: { type: Boolean, default: false }
 })
 const emit = defineEmits(['close'])
-const { fadeIn, slideInLeft } = useAnimation()
+const { fadeIn, slideInRight } = useAnimation()
 </script>
 
 <template>
@@ -11,7 +11,7 @@ const { fadeIn, slideInLeft } = useAnimation()
     <div v-if="open" class="nav-overlay" role="dialog" aria-modal="true">
       <Motion as="div" v-bind="fadeIn" class="nav-overlay__backdrop" @click="emit('close')" />
 
-      <Motion as="div" v-bind="slideInLeft" class="nav-overlay__panel">
+      <Motion as="div" v-bind="slideInRight" class="nav-overlay__panel">
         <PillButton variant="dark" class="nav-overlay__close" @click="emit('close')">
           <IconPlus class="nav-overlay__close-icon" />
           <span>Close</span>
@@ -28,6 +28,11 @@ const { fadeIn, slideInLeft } = useAnimation()
   position: fixed;
   inset: 0;
   z-index: 100;
+  /* Panel is anchored to the right edge — pushes it there via flex rather than
+     absolute-positioning it, so its own width/flow (full-width on mobile,
+     clamped on desktop) still drives its layout. */
+  display: flex;
+  justify-content: flex-end;
 }
 
 .nav-overlay__backdrop {
@@ -62,8 +67,10 @@ const { fadeIn, slideInLeft } = useAnimation()
     width: clamp(420px, 42vw, 560px);
     padding: 48px 56px 56px;
     gap: 96px;
-    border-radius: 0 32px 32px 0;
-    box-shadow: 24px 0 64px rgba(0, 0, 0, 0.35);
+    /* Flat edge against the screen's right boundary, rounded edge facing
+       inward — mirrors the old left-anchored radius/shadow for the new side. */
+    border-radius: 32px 0 0 32px;
+    box-shadow: -24px 0 64px rgba(0, 0, 0, 0.35);
   }
 }
 </style>
