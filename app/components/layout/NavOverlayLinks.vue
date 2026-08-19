@@ -59,7 +59,7 @@ const socialColumns = [
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: 5px;
 }
 
 .nav-links__link {

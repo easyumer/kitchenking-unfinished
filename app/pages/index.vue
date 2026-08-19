@@ -8,13 +8,16 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="home">
+  <main id="home" class="home">
     <HeroSection />
     <StorySection />
     <ExploreMenuSection />
     <BestsellersSection />
     <DealsSection />
     <FreshTakeSection />
+    <InstagramLocation />
+    <FaqSection />
+    <FooterSection />
   </main>
 </template>
 

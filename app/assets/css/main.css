@@ -1,27 +1,29 @@
+@import "leaflet/dist/leaflet.css";
+
 :root {
   /* ── Colors ── */
-  --color-deep:        #070707;   /* universal page background */
-  --color-section:     #1a1a1a;   /* lighter section blocks laid on top */
-  --color-surface:     #004d42;   /* cards, elevated surfaces */
-  --color-gold:        #ffca59;   /* primary accent */
-  --color-gold-light:  #ffefad;
-  --color-gold-200:    #fddb8a;
-  --color-cream:       #f7f3ec;
-  --color-offwhite:    #fafafa;   /* primary text */
-  --color-white:       #ffffff;   /* pure white — headline text on photo/video */
-  --color-bahamian:    #00c4b0;   /* secondary accent */
-  --color-coral:       #e8624a;
-  --color-sand:        #f5edd8;
-  --color-muted:       #8bb5a0;
+  --color-deep: #070707; /* universal page background */
+  --color-section: #1a1a1a; /* lighter section blocks laid on top */
+  --color-surface: #004d42; /* cards, elevated surfaces */
+  --color-gold: #ffca59; /* primary accent */
+  --color-gold-light: #ffefad;
+  --color-gold-200: #fddb8a;
+  --color-cream: #f7f3ec;
+  --color-offwhite: #fafafa; /* primary text */
+  --color-white: #ffffff; /* pure white — headline text on photo/video */
+  --color-bahamian: #00c4b0; /* secondary accent */
+  --color-coral: #e8624a;
+  --color-sand: #f5edd8;
+  --color-muted: #8bb5a0;
 
   /* ── Typography ── */
-  --font-display: 'Hanken Grotesk', sans-serif;   /* headings */
-  --font-body:    'Inter', sans-serif;             /* body text */
+  --font-display: "Hanken Grotesk", sans-serif; /* headings */
+  --font-body: "Inter", sans-serif; /* body text */
 
   /* ── Easing ── */
-  --ease-out-expo:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
-  --ease-bounce:      cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-bounce: cubic-bezier(0.23, 1, 0.32, 1);
 
   /* ── Misc ── */
   --radius-md: 8px;
@@ -34,11 +36,15 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   /* Safety net: no single section should ever be able to create a page-level
      horizontal scrollbar (e.g. an element that intentionally overhangs past
      its own section's edge, like the hero's Order badge). */
   overflow-x: hidden;
+  background: #050505;
+
+  scroll-behavior: smooth;
 }
 
 body {
@@ -50,11 +56,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
 }
 
-img, video {
+img,
+video {
   max-width: 100%;
   display: block;
 }
@@ -66,8 +78,12 @@ a {
 
 /* ── Marquee ticker ── */
 @keyframes ticker-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .ticker-track {

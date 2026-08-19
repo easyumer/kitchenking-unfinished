@@ -46,7 +46,7 @@ const { fadeIn, slideInRight } = useAnimation()
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 64px;
+  gap: 60px;
   width: 100%;
   height: 100%;
   padding: 32px clamp(24px, 6vw, 48px) 48px;
@@ -65,8 +65,8 @@ const { fadeIn, slideInRight } = useAnimation()
 
   .nav-overlay__panel {
     width: clamp(420px, 42vw, 560px);
-    padding: 48px 56px 56px;
-    gap: 96px;
+    padding: 40px 56px 56px;
+    gap: 45px;
     /* Flat edge against the screen's right boundary, rounded edge facing
        inward — mirrors the old left-anchored radius/shadow for the new side. */
     border-radius: 32px 0 0 32px;

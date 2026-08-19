@@ -99,19 +99,59 @@ const products = [
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width:768px) {
+
   .bestsellers {
+
     padding: 0 16px 48px;
+
+    overflow: hidden;
+
   }
+
 
   .bestsellers__heading {
+
     font-size: 32px;
+
     margin-bottom: 20px;
+
   }
 
+
+
   .bestsellers__grid {
-    grid-template-columns: 1fr;
+
+    display: flex;
+
     gap: 16px;
+
+    overflow-x: auto;
+
+    scroll-snap-type: x mandatory;
+
+    padding-bottom: 10px;
+
+    scrollbar-width: none;
+
   }
+
+
+  .bestsellers__grid::-webkit-scrollbar {
+
+    display: none;
+
+  }
+
+
+
+  .bestsellers__grid :deep(.product-card) {
+
+    flex: 0 0 85%;
+
+    scroll-snap-align: start;
+
+  }
+
 }
 </style>

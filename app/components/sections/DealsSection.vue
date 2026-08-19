@@ -1,5 +1,5 @@
 <script setup>
-import bannerImg from '~/assets/images/menu-category-burgers.jpg'
+import bannerImg from '~/assets/images/Dealandoffers.png'
 </script>
 
 <template>
@@ -7,9 +7,19 @@ import bannerImg from '~/assets/images/menu-category-burgers.jpg'
     <h2 class="deals__heading">Deals &amp; Offers</h2>
 
     <div class="deals__banner" :style="{ backgroundImage: `url(${bannerImg})` }">
-      <p class="deals__copy">
-        Ask about our rotating weekly specials — fresh Caribbean flavors, great prices, updated often.
-      </p>
+
+      <div class="deals__content">
+        <div class="deals__title">
+          <h3>FAMILY</h3>
+          <span>COMBO DEAL</span>
+        </div>
+
+        <p class="deals__copy">
+          *Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore magna aliqua.
+        </p>
+      </div>
+
     </div>
 
     <div class="deals__nav">
@@ -52,6 +62,38 @@ import bannerImg from '~/assets/images/menu-category-burgers.jpg'
   position: absolute;
   inset: 0;
   background: linear-gradient(266.58deg, var(--color-gold) 27.5%, rgba(255, 202, 89, 0) 73.46%);
+}
+
+.deals__title {
+  position: absolute;
+  top: calc(100vw * 80 / 1920);
+  right: calc(100vw * 95 / 1920);
+  text-align: center;
+  color: var(--color-deep);
+}
+
+.deals__content {
+  color: var(--color-deep);
+}
+
+
+.deals__title h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: calc(100vw * 200 / 1920);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: 2px;
+}
+
+
+.deals__title span {
+  display: block;
+  margin-top: calc(100vw * 10 / 1920);
+  font-family: var(--font-body);
+  font-size: calc(100vw * 75 / 1920);
+  font-weight: 300;
+  letter-spacing: calc(100vw * 20 / 1920);
 }
 
 .deals__copy {
@@ -123,11 +165,29 @@ import bannerImg from '~/assets/images/menu-category-burgers.jpg'
     border-radius: 16px;
   }
 
-  .deals__copy {
+  .deals__content {
+    position: absolute;
+    top: 50%;
     right: 16px;
-    bottom: 16px;
-    width: 60%;
-    font-size: 12px;
+    width: 58%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    transform: translateY(-50%);
+  }
+
+  .deals__title {
+    position: static;
+  }
+
+  .deals__copy {
+    position: static;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    font-size: 10px;
+    text-align: right;
   }
 
   .deals__nav {
@@ -144,6 +204,17 @@ import bannerImg from '~/assets/images/menu-category-burgers.jpg'
   .deals__nav-icon {
     width: 20px;
     height: 20px;
+  }
+
+  .deals__title h3 {
+    font-size: 26px;
+    letter-spacing: 1px;
+  }
+
+  .deals__title span {
+    margin-top: 4px;
+    font-size: 10px;
+    letter-spacing: 3px;
   }
 }
 </style>

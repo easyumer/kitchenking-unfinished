@@ -99,12 +99,21 @@ const { fadeUp } = useAnimation()
 
   .fresh-take__banner {
     aspect-ratio: auto;
+    min-height: clamp(1000px, 170vw, 700px);
     border-radius: 20px;
+    background-position: center bottom;
+  }
+
+  .fresh-take__banner::before {
+    background:
+      linear-gradient(0deg, rgba(7, 7, 7, 0.4), rgba(7, 7, 7, 0.4)),
+      linear-gradient(180deg, #070707 0%, #070707 55%, rgba(7, 7, 7, 0) 78%);
   }
 
   .fresh-take__content {
-    position: static;
+    position: relative;
     display: flex;
+    z-index: 1;
     flex-direction: column;
     gap: 24px;
     padding: 32px 20px;
