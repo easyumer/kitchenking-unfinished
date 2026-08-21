@@ -36,11 +36,14 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html {
   /* Safety net: no single section should ever be able to create a page-level
      horizontal scrollbar (e.g. an element that intentionally overhangs past
-     its own section's edge, like the hero's Order badge). */
+     its own section's edge, like the hero's Order badge). Deliberately kept
+     off `body` — setting it there too would stop it propagating to the
+     viewport (only happens when html's own overflow is 'visible'), turning
+     body into its own scroll container and silently breaking
+     `position: sticky` for every descendant on the page. */
   overflow-x: hidden;
   background: #050505;
 

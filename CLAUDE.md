@@ -4,13 +4,13 @@
 
 ## Tech Stack
 
-| Layer | Choice |
-|---|---|
-| Framework | Nuxt 4 (latest) |
-| Animation | Motion.dev (`motion-v`) |
-| Styling | CSS (shared utilities in `assets/css/main.css`) |
-| Language | JavaScript |
-| Package Manager | pnpm |
+| Layer           | Choice                                           |
+| --------------- | ------------------------------------------------ |
+| Framework       | Nuxt 4 (latest)                                  |
+| Animation       | Motion.dev (`motion-v`)                        |
+| Styling         | CSS (shared utilities in`assets/css/main.css`) |
+| Language        | JavaScript                                       |
+| Package Manager | pnpm                                             |
 
 ---
 
@@ -76,11 +76,11 @@ All **shared and repeated CSS** must live here. No exceptions.
 
 ### What goes WHERE
 
-| Style type | Location |
-|---|---|
-| Global vars, resets, utility classes | `assets/css/main.css` |
-| Component-specific styles | `<style scoped>` inside the `.vue` file |
-| Repeated patterns (buttons, overlays, shared blocks) | `main.css` as a reusable class |
+| Style type                                           | Location                                    |
+| ---------------------------------------------------- | ------------------------------------------- |
+| Global vars, resets, utility classes                 | `assets/css/main.css`                     |
+| Component-specific styles                            | `<style scoped>` inside the `.vue` file |
+| Repeated patterns (buttons, overlays, shared blocks) | `main.css` as a reusable class            |
 
 ---
 
@@ -89,9 +89,11 @@ All **shared and repeated CSS** must live here. No exceptions.
 Motion.dev is the only JavaScript animation library used in this project, via **`motion-v`** (the official Vue package — `@motionone/vue` is deprecated, do not use it).
 
 ### Setup
+
 ```bash
 pnpm add motion-v @vueuse/core
 ```
+
 Registered as a Nuxt module in `nuxt.config.js` (`modules: ['motion-v/nuxt']`), which auto-imports `Motion`, `AnimatePresence`, etc. and utilities like `useReducedMotion` — no manual imports needed in components.
 
 ### Composable pattern
@@ -193,10 +195,10 @@ useSeoMeta({
 
 ## Project Context
 
-| | |
-|---|---|
-| Restaurant | Kitchen King |
-| Location | West Bay St · Nassau, Bahamas |
-| Cuisine | Caribbean / Bahamian |
-| Primary CTA | "Order Now" / "Reserve a Table" |
-| Static assets | All sourced from `app/assets/` (logo, video, images) |
+|               |                                                       |
+| ------------- | ----------------------------------------------------- |
+| Restaurant    | Kitchen King                                          |
+| Location      | West Bay St · Nassau, Bahamas                        |
+| Cuisine       | Caribbean / Bahamian                                  |
+| Primary CTA   | "Order Now" / "Reserve a Table"                       |
+| Static assets | All sourced from`app/assets/` (logo, video, images) |

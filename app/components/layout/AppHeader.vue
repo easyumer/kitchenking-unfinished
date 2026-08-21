@@ -2,6 +2,7 @@
 defineEmits(['toggle-nav'])
 const { fadeIn } = useAnimation()
 const { contact } = useSiteConfig()
+const { itemCount } = useCart()
 </script>
 
 <template>
@@ -16,8 +17,8 @@ const { contact } = useSiteConfig()
         <IconLocation />
       </button>
 
-      <button class="app-header__pill" type="button" aria-label="Cart, 0 items">
-        <span>0</span>
+      <button class="app-header__pill" type="button" :aria-label="`Cart, ${itemCount} items`">
+        <span>{{ itemCount }}</span>
         <IconCart />
       </button>
 
