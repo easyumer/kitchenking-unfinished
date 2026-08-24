@@ -1,25 +1,25 @@
 <script setup>
-import reel1 from '~/assets/images/Rectangle 52.png'
-import reel2 from '~/assets/images/Rectangle 53.png'
+import reel1 from '~/assets/video/signature-oxtail-sliders.mp4'
+import reel2 from '~/assets/video/SaveVid.Net_AQPOOjfL4XUgsHlTxqK0VkfEKyExw7HEqoj8OB8kygekCATFfNpDl5eWmWZxF3RC_8-3SKXUliFmQg-Xe_ZM85-f4oKnWcSiqLB86iM.mp4'
 import frameIcon from '~/assets/images/Frame.png'
 import { onMounted, onUnmounted } from 'vue'
 
 
 const instagramPosts = [
     {
-        image: reel1,
+        video: reel1,
         alt: 'Kitchen King Instagram post'
     },
     {
-        image: reel2,
+        video: reel2,
         alt: 'Kitchen King Instagram post'
     },
     {
-        image: reel1,
+        video: reel1,
         alt: 'Kitchen King Instagram post'
     },
     {
-        image: reel2,
+        video: reel2,
         alt: 'Kitchen King Instagram post'
     }
 ]
@@ -80,7 +80,7 @@ onUnmounted(() => {
             <div class="instagram__grid">
                 <a v-for="(post, index) in instagramPosts" :key="index" href="#" class="instagram__card"
                     aria-label="View Kitchen King Instagram post">
-                    <img :src="post.image" :alt="post.alt" />
+                    <video :src="post.video" autoplay muted loop playsinline />
                 </a>
             </div>
         </div>
@@ -204,7 +204,10 @@ onUnmounted(() => {
     background: #222;
 }
 
-.instagram__card img {
+
+
+
+.instagram__card video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -212,7 +215,7 @@ onUnmounted(() => {
     transition: transform 0.4s var(--ease-out-expo);
 }
 
-.instagram__card:hover img {
+.instagram__card:hover video {
     transform: scale(1.04);
 }
 

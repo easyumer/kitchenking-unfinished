@@ -83,7 +83,7 @@ const toggleFaq = (index) => {
 
 
                         <span class="faq__icon" :class="{ open: activeIndex === index }">
-                            ⌄
+                            +
                         </span>
 
                     </button>
@@ -279,21 +279,21 @@ const toggleFaq = (index) => {
 
 
 .faq__icon {
-
     display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+    font-weight: 300;
 
     transition:
-        transform .4s ease;
-
+        transform .35s ease;
 }
 
 
 .faq__icon.open {
-
-    transform: rotate(180deg);
-
+    transform: rotate(45deg);
 }
-
 
 
 .faq__answer {

@@ -1,4 +1,6 @@
 <script setup>
+import facebookLogo from '~/assets/images/logos/Facebook logo.png'
+import instagramLogo from '~/assets/images/logos/Instagram Logo.png'
 
 const navigation = [
     {
@@ -127,17 +129,13 @@ const navigation = [
 
                 <div class="footer__icons">
 
-
-                    <a href="#">
-                        f
+                    <a href="#" aria-label="Facebook" class="footer__social-link">
+                        <img :src="facebookLogo" alt="Facebook" />
                     </a>
 
-
-                    <a href="#">
-                        ◎
+                    <a href="#" aria-label="Instagram" class="footer__social-link">
+                        <img :src="instagramLogo" alt="Instagram" />
                     </a>
-
-
                 </div>
 
 
@@ -178,7 +176,7 @@ const navigation = [
 
     padding:
 
-        calc(100vw * 50 / 1920) calc(100vw * 45 / 1920) calc(100vw * 10 / 1920);
+        calc(100vw * 170 / 1920) calc(100vw * 45 / 1920) calc(100vw * 60 / 1920);
 
 
     background: #1b1b1b;
@@ -269,7 +267,7 @@ const navigation = [
 .footer__hours {
 
 
-    text-align: center;
+    text-align: right;
 
 }
 
@@ -278,7 +276,7 @@ const navigation = [
 .footer__nav {
 
 
-    text-align: center;
+    text-align: right;
 
 }
 
@@ -393,24 +391,49 @@ const navigation = [
 
 }
 
+.footer__icons a img {
+    width: 10px;
+    height: 10px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+.footer__icons a:hover {
+    background: #4a4a4a;
+    transform: translateY(-3px);
+}
+
+.footer__icons a:hover img {
+    transform: scale(1.1);
+}
+
+.footer__icons a img {
+    width: 18px;
+    height: 18px;
+
+    object-fit: contain;
+    display: block;
+
+    transition: transform 0.3s ease;
+}
 
 
 
 .footer__copyright {
+    position: absolute;
 
+    right: calc(100vw * 45 / 1920);
+    bottom: calc(100vw * 68 / 1920);
 
-    margin-top: 20px;
-
+    margin: 0;
 
     text-align: right;
 
-
     font-size: 10px;
 
-
     color: rgba(255, 255, 255, .35);
-
-
 }
 
 
@@ -466,10 +489,11 @@ const navigation = [
 
 
     .footer__copyright {
+        position: static;
 
+        margin-top: 20px;
 
         text-align: left;
-
     }
 
 
