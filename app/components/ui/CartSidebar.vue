@@ -9,12 +9,12 @@ const { items, itemCount, subtotal } = useCart()
       <CartLineItem v-for="item in items" :key="item.id" :item="item" />
     </div>
 
-    <div class="cart-sidebar__footer">
+    <NuxtLink to="/order" class="cart-sidebar__footer">
       <span>View Cart</span>
       <span class="cart-sidebar__summary">
         {{ itemCount }} item{{ itemCount === 1 ? '' : 's' }} &middot; ${{ subtotal.toFixed(2) }}
       </span>
-    </div>
+    </NuxtLink>
   </aside>
 </template>
 

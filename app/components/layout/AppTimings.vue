@@ -1,4 +1,11 @@
 <script setup>
+defineProps({
+  hidden: {
+    type: Boolean,
+    default: false
+  }
+})
+
 const { timings } = useSiteConfig()
 const { fadeIn } = useAnimation()
 </script>
@@ -6,7 +13,7 @@ const { fadeIn } = useAnimation()
 <template>
   <!-- Outer element owns the centring transform; the Motion child only fades
        opacity, so Motion's inline transform can't clobber the centring. -->
-  <div class="app-timings">
+  <div class="app-timings" :class="{ hidden }">
     <Motion as="p" v-bind="fadeIn" class="app-timings__inner">
       <span class="app-timings__dot" />
       <span class="app-timings__text">Timings: {{ timings }}</span>
@@ -20,7 +27,19 @@ const { fadeIn } = useAnimation()
   top: 12px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 55;
+  z-index: 60;
+
+  transition:
+    transform .45s ease,
+    opacity .35s ease;
+}
+
+
+
+.app-timings.hidden {
+  transform:
+    translate(-50%, -40px);
+  opacity: 0;
 }
 
 .app-timings__inner {

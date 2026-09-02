@@ -1,28 +1,112 @@
 <script setup>
+
+const props = defineProps({
+  scrolled: {
+    type: Boolean,
+    default: false
+  }
+})
+
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { locations } from '~/data/locations'
+
+
 defineEmits(['toggle-nav'])
+
+
 const { fadeIn } = useAnimation()
-const { contact } = useSiteConfig()
 const { itemCount } = useCart()
+
+
+const showLocationPicker = ref(false)
+
+
+const selectedLocation = ref(
+  locations[0]
+)
+
+
+
+function changeLocation(location) {
+
+  selectedLocation.value = location
+
+  showLocationPicker.value = false
+
+}
+
+
+
+function handleOutsideClick(event) {
+
+  const picker = document.querySelector('.location-wrapper')
+
+  if (
+    picker &&
+    !picker.contains(event.target)
+  ) {
+
+    showLocationPicker.value = false
+
+  }
+
+}
+
+
+
+onMounted(() => {
+
+  document.addEventListener(
+    'click',
+    handleOutsideClick
+  )
+
+})
+
+
+onBeforeUnmount(() => {
+
+  document.removeEventListener(
+    'click',
+    handleOutsideClick
+  )
+
+})
+
 </script>
 
 <template>
-  <Motion as="header" v-bind="fadeIn" class="app-header">
+  <Motion as="header" v-bind="fadeIn" class="app-header" :class="{ 'app-header--scrolled': props.scrolled }">
     <NuxtLink to="/" class="app-header__logo" aria-label="Kitchen King home">
       <img src="~/assets/images/kitchen-king-logo.png" alt="Kitchen King" />
     </NuxtLink>
 
     <div class="app-header__tray">
-      <button class="app-header__pill app-header__pill--location" type="button">
-        <span>{{ contact.addressLines[1] }}</span>
-        <IconLocation />
-      </button>
+      <div class="location-wrapper">
 
-      <button class="app-header__pill" type="button" :aria-label="`Cart, ${itemCount} items`">
+        <button class="app-header__pill app-header__pill--location"
+          @click.stop="showLocationPicker = !showLocationPicker">
+
+          <span>
+            {{ selectedLocation.name }}
+          </span>
+
+          <IconLocation />
+
+        </button>
+
+
+        <LocationPicker v-if="showLocationPicker" @close="showLocationPicker = false" @select="changeLocation" />
+
+      </div>
+
+      <NuxtLink to="/order" class="app-header__pill" :aria-label="`Cart, ${itemCount} items`">
         <span>{{ itemCount }}</span>
         <IconCart />
-      </button>
+      </NuxtLink>
 
-      <button class="app-header__pill app-header__pill--menu" type="button" aria-label="Open menu" @click="$emit('toggle-nav')">
+      <button class="app-header__pill app-header__pill--menu" type="button" aria-label="Open menu"
+        @click="$emit('toggle-nav')">
         <span>Menu</span>
         <IconMenu />
       </button>
@@ -32,21 +116,89 @@ const { itemCount } = useCart()
 
 <style scoped>
 .app-header {
+
   position: fixed;
+
   top: 0;
   left: 0;
   right: 0;
+
   z-index: 55;
+
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  /* Figma: logo at left 41 / top 56 (its crown overhangs 7px past the 48px
-     content margin), pills at right 48 / top 76. */
+
+
   padding: 56px 48px 0 41px;
-  /* Minimum breathing room between logo and pills at any width — without this,
-     space-between lets them close to a 0px gap (verified at 320px) instead of
-     wrapping or shrinking further. */
+
   gap: 16px;
+
+
+  transition:
+    padding .45s ease,
+    background-color .45s ease,
+    backdrop-filter .45s ease,
+    box-shadow .45s ease;
+
+}
+
+.app-header--scrolled {
+
+
+  padding-top: 20px;
+  padding-bottom: 15px;
+
+
+  background:
+
+    linear-gradient(to bottom,
+      rgba(0, 0, 0, .85),
+      rgba(0, 0, 0, .45));
+
+
+  backdrop-filter: blur(10px);
+
+
+  box-shadow:
+
+    0 10px 30px rgba(0, 0, 0, .35);
+
+
+}
+
+.app-header__logo img {
+
+  transition:
+    height .45s ease;
+
+}
+
+
+.app-header--scrolled .app-header__logo img {
+
+  height: 42px;
+
+}
+
+.app-header__tray {
+
+  transition:
+    transform .45s ease,
+    margin-top .45s ease;
+
+}
+
+
+.app-header--scrolled .app-header__tray {
+
+  margin-top: 8px;
+  transform: translateY(-5px);
+
+}
+
+.location-wrapper {
+  position: relative;
 }
 
 .app-header__logo img {
@@ -122,7 +274,12 @@ const { itemCount } = useCart()
   }
 
   .app-header__logo img {
+
     height: calc(100vw * 36 / 390);
+
+    transition:
+      height .45s ease;
+
   }
 
   .app-header__tray {
@@ -131,6 +288,9 @@ const { itemCount } = useCart()
     top: calc(32px + 100vw * 12 / 390);
     gap: calc(100vw * 8 / 390);
     margin-top: 0;
+    transition:
+      top .45s ease,
+      transform .45s ease;
   }
 
   .app-header__pill {
@@ -165,6 +325,54 @@ const { itemCount } = useCart()
   .app-header__pill :deep(svg) {
     width: calc(100vw * 12 / 390);
     height: calc(100vw * 12 / 390);
+  }
+
+  /* Mobile scroll state */
+  .app-header--scrolled {
+
+    height: 64px;
+
+    background:
+      linear-gradient(to bottom,
+        rgba(0, 0, 0, 0.85),
+        rgba(0, 0, 0, 0.45));
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+      0 8px 25px rgba(0, 0, 0, .35);
+
+  }
+
+
+  /* shrink logo when scrolled */
+  .app-header--scrolled .app-header__logo {
+
+    top: 18px;
+
+  }
+
+
+  .app-header--scrolled .app-header__logo img {
+
+    height: 28px;
+
+  }
+
+
+  /* move buttons slightly up */
+  .app-header--scrolled .app-header__tray {
+
+    top: 16px;
+
+  }
+
+
+  /* slightly compact buttons */
+  .app-header--scrolled .app-header__pill {
+
+    height: 32px;
+
   }
 }
 </style>

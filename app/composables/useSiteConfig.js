@@ -21,5 +21,7 @@ export const useSiteConfig = () => ({
     facebook: '#',
     tiktok: '#',
     linkedin: '#'
-  }
+  },
+  // Bahamas VAT — applied to the cart subtotal on the order/checkout page.
+  taxRate: 0.1
 })

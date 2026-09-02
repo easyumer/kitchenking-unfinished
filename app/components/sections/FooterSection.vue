@@ -176,7 +176,7 @@ const navigation = [
 
     padding:
 
-        calc(100vw * 170 / 1920) calc(100vw * 45 / 1920) calc(100vw * 60 / 1920);
+        calc(100vw * 110 / 1920) calc(100vw * 45 / 1920) calc(100vw * 60 / 1920);
 
 
     background: #1b1b1b;

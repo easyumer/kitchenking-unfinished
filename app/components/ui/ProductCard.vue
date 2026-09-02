@@ -4,21 +4,22 @@ const props = defineProps({
   image: { type: String, default: null },
   price: { type: String, required: true },
   name: { type: String, required: true },
-  description: { type: String, required: true }
+  description: { type: String, required: true },
+  customization: { type: Object, default: null }
 })
 
-const { addItem } = useCart()
+const showCustomize = ref(false)
 
 // Falls back to the item name so cards used without an explicit id (e.g.
 // existing BestsellersSection entries) still work as a stable cart key.
-const handleAddToCart = () => {
-  addItem({
-    id: props.id ?? props.name,
-    name: props.name,
-    price: props.price,
-    image: props.image
-  })
-}
+const modalItem = computed(() => ({
+  id: props.id ?? props.name,
+  name: props.name,
+  price: props.price,
+  image: props.image,
+  description: props.description,
+  customization: props.customization
+}))
 </script>
 
 <template>
@@ -37,8 +38,10 @@ const handleAddToCart = () => {
         <p class="product-card__description">{{ description }}</p>
       </div>
 
-      <AddToCartButton @click="handleAddToCart" />
+      <AddToCartButton @click="showCustomize = true" />
     </div>
+
+    <ItemCustomizeModal :open="showCustomize" :item="modalItem" @close="showCustomize = false" />
   </article>
 </template>
 

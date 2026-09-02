@@ -5,15 +5,18 @@ import { reactive, computed } from 'vue'
 // badge and the menu page's sidebar both need to reflect the same items.
 const items = reactive([])
 
-const parsePrice = (price) => Number(String(price).replace(/[^0-9.]/g, '')) || 0
+// Exported (not just used internally) so any component pricing out a single
+// cart line — e.g. CartOrderLineItem's per-item total — parses the same way
+// the cart's own subtotal does, instead of re-implementing the regex.
+export const parsePrice = (price) => Number(String(price).replace(/[^0-9.]/g, '')) || 0
 
 export const useCart = () => {
-  const addItem = (product) => {
+  const addItem = (product, quantity = 1) => {
     const existing = items.find((item) => item.id === product.id)
     if (existing) {
-      existing.quantity += 1
+      existing.quantity += quantity
     } else {
-      items.push({ ...product, quantity: 1 })
+      items.push({ ...product, quantity })
     }
   }
 

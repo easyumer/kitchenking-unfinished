@@ -32,13 +32,8 @@ onUnmounted(() => observer?.disconnect())
 
     <div class="menu-order__layout">
       <div class="menu-order__categories">
-        <div
-          v-for="category in categories"
-          :key="category.id"
-          :ref="(el) => setSectionRef(category.id, el)"
-          :data-category-id="category.id"
-          class="menu-order__category"
-        >
+        <div v-for="category in categories" :key="category.id" :ref="(el) => setSectionRef(category.id, el)"
+          :data-category-id="category.id" class="menu-order__category">
           <h2 class="menu-order__heading">{{ category.label }}</h2>
           <div class="menu-order__grid">
             <ProductCard v-for="item in category.items" :key="item.id" v-bind="item" />
@@ -47,6 +42,7 @@ onUnmounted(() => observer?.disconnect())
       </div>
 
       <CartSidebar class="menu-order__sidebar" />
+
     </div>
   </section>
 </template>
@@ -63,7 +59,7 @@ onUnmounted(() => observer?.disconnect())
   scroll-margin-top: 220px;
 }
 
-.menu-order__category + .menu-order__category {
+.menu-order__category+.menu-order__category {
   margin-top: calc(100vw * 56 / 1920);
 }
 
@@ -99,7 +95,7 @@ onUnmounted(() => observer?.disconnect())
   .menu-order__layout {
     display: flex;
     flex-direction: column;
-    padding: 0 16px 48px;
+    padding: 0 16px 120px;
     gap: 32px;
   }
 
@@ -107,7 +103,7 @@ onUnmounted(() => observer?.disconnect())
     scroll-margin-top: 76px;
   }
 
-  .menu-order__category + .menu-order__category {
+  .menu-order__category+.menu-order__category {
     margin-top: 32px;
   }
 
@@ -122,7 +118,7 @@ onUnmounted(() => observer?.disconnect())
   }
 
   .menu-order__sidebar {
-    position: static;
+    display: none;
   }
 }
 </style>
