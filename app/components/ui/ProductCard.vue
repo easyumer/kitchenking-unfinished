@@ -171,21 +171,15 @@ const modalItem = computed(() => ({
 
   .product-card {
 
-    height: 470px;
-
-    min-width: 0;
-
-    padding: 8px;
-
-    border-radius: 14px;
-
+    height: 290px;
+    padding: 6px;
+    border-radius: 12px;
   }
 
 
   .product-card__image {
 
-    height: 220px;
-
+    height: 100px;
     width: 100%;
 
     border-radius: 8px;
@@ -197,49 +191,32 @@ const modalItem = computed(() => ({
 
   .product-card__image--placeholder {
 
-    height: 220px;
-
-    font-size: 13px;
+    height: 100px;
 
   }
 
 
   .product-card__content {
 
-    flex: 1;
-
-    display: flex;
-
-    flex-direction: column;
-
-    padding: 40px 8px 8px;
-
-    gap: 0;
-
-  }
-
-
-  .product-card__text {
-
-    flex: 1;
+    padding: 10px 6px 6px;
 
   }
 
 
   .product-card__title {
 
-    height: auto;
+    height: 70px;
 
-    gap: 4px;
+    gap: 2px;
 
   }
 
 
   .product-card__price {
 
-    font-size: 22px;
-
-
+    font-size: 18px;
+    margin-top: 10px;
+    padding-bottom: 2px;
     line-height: 1;
 
   }
@@ -247,9 +224,9 @@ const modalItem = computed(() => ({
 
   .product-card__name {
 
-    padding-top: 2;
+    padding-top: 4px;
 
-    font-size: 19px;
+    font-size: 15px;
 
     line-height: 1.2;
 
@@ -258,15 +235,24 @@ const modalItem = computed(() => ({
 
   .product-card__description {
 
-    margin-top: 10px;
+    margin-top: 6px;
 
-    height: 55px;
+    height: 31px;
 
-    font-size: 13px;
+    font-size: 12px;
 
-    line-height: 1.3;
+    color: rgba(250, 250, 250, 0.4);
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 
     overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    line-height: 1.25;
 
   }
 

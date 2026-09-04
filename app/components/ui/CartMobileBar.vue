@@ -7,16 +7,18 @@ const isVisible = computed(() => itemCount.value > 0 && route.path !== '/order')
 
 <template>
   <NuxtLink v-if="isVisible" to="/order" class="cart-mobile-bar">
-    <div class="cart-mobile-bar__summary">
-      {{ itemCount }} Item<span v-if="itemCount !== 1">s</span>
-      <span>|</span>
-      ${{ subtotal.toFixed(2) }}
-    </div>
 
     <div class="cart-mobile-bar__action">
       View Cart
       <IconArrowUpRight />
     </div>
+    <div class="cart-mobile-bar__summary">
+      {{ itemCount }} <span v-if="itemCount !== 1">Items</span><span v-else="itemCount !== 1">Item</span>
+      <span>|</span>
+      ${{ subtotal.toFixed(2) }}
+    </div>
+
+
   </NuxtLink>
 </template>
 
@@ -33,10 +35,11 @@ const isVisible = computed(() => itemCount.value > 0 && route.path !== '/order')
     justify-content: space-between;
     left: 0;
     right: 0;
-    bottom: 0;
-    min-height: 56px;
+    bottom: -7px;
+    min-height: 59px;
     padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px));
     background: var(--color-gold);
+    border-radius: 10px;
     z-index: 9999;
     color: var(--color-deep);
     font-family: var(--font-display);

@@ -4,6 +4,27 @@ const props = defineProps({
   item: { type: Object, default: null }
 })
 
+
+
+import { onBeforeUnmount } from 'vue'
+
+const lockScroll = () => {
+  document.body.style.overflow = 'hidden'
+}
+
+const unlockScroll = () => {
+  document.body.style.overflow = ''
+}
+
+onBeforeUnmount(() => {
+  unlockScroll()
+})
+
+const closeModal = () => {
+  unlockScroll()
+  emit('close')
+}
+
 const emit = defineEmits(['close'])
 
 const { addItem } = useCart()
@@ -26,7 +47,12 @@ const resetSelections = () => {
 }
 
 watch(() => props.open, (isOpen) => {
-  if (isOpen) resetSelections()
+  if (isOpen) {
+    resetSelections()
+    lockScroll()
+  } else {
+    unlockScroll()
+  }
 })
 
 const basePrice = computed(() => Number(String(props.item?.price ?? '0').replace(/[^0-9.]/g, '')) || 0)
@@ -104,14 +130,14 @@ const handleAddToOrder = () => {
     },
     quantity.value
   )
-  emit('close')
+  closeModal()
 }
 </script>
 
 <template>
   <AnimatePresence>
     <div v-if="open && item" class="item-modal" role="dialog" aria-modal="true">
-      <Motion as="div" v-bind="fadeIn" class="item-modal__backdrop" @click="emit('close')" />
+      <Motion as="div" v-bind="fadeIn" class="item-modal__backdrop" @click="closeModal" />
 
       <Motion as="div" v-bind="fadeUp" class="item-modal__panel">
         <div class="item-modal__header">
@@ -121,16 +147,22 @@ const handleAddToOrder = () => {
           <div class="item-modal__info">
             <h3 class="item-modal__name">{{ item.name }}</h3>
             <p class="item-modal__description">{{ item.description }}</p>
-            <span class="item-modal__base-price">{{ item.price }} base price</span>
+            <div class="item-modal__price-row">
 
-            <div class="item-modal__stepper">
-              <button type="button" aria-label="Decrease quantity" @click="decreaseQuantity">
-                <IconMinus />
-              </button>
-              <span>{{ quantity }}</span>
-              <button type="button" aria-label="Increase quantity" @click="increaseQuantity">
-                <IconPlus />
-              </button>
+              <span class="item-modal__base-price">
+                {{ item.price }} base price
+              </span>
+
+              <div class="item-modal__stepper">
+                <button type="button" aria-label="Decrease quantity" @click="decreaseQuantity">
+                  <IconMinus />
+                </button>
+                <span>{{ quantity }}</span>
+                <button type="button" class="item-modal__increase" aria-label="Increase quantity"
+                  @click="increaseQuantity">
+                  <IconPlus />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -143,21 +175,11 @@ const handleAddToOrder = () => {
 
           <label v-for="option in group.options" :key="option.id" class="item-modal__option">
             <span class="item-modal__option-left">
-              <input
-                v-if="group.type === 'multiple'"
-                type="checkbox"
+              <input v-if="group.type === 'multiple'" type="checkbox"
                 class="item-modal__control item-modal__control--checkbox"
-                :checked="selections[group.id]?.includes(option.id)"
-                @change="toggleMultiple(group, option.id)"
-              />
-              <input
-                v-else
-                v-model="selections[group.id]"
-                type="radio"
-                class="item-modal__control"
-                :name="`${item.id}-${group.id}`"
-                :value="option.id"
-              />
+                :checked="selections[group.id]?.includes(option.id)" @change="toggleMultiple(group, option.id)" />
+              <input v-else v-model="selections[group.id]" type="radio" class="item-modal__control"
+                :name="`${item.id}-${group.id}`" :value="option.id" />
               {{ option.label }}
             </span>
             <span class="item-modal__option-price">{{ formatDelta(option.priceDelta) }}</span>
@@ -165,7 +187,7 @@ const handleAddToOrder = () => {
         </div>
 
         <div class="item-modal__footer">
-          <button type="button" class="item-modal__cancel" @click="emit('close')">Cancel</button>
+          <button type="button" class="item-modal__cancel" @click="closeModal">Cancel</button>
           <button type="button" class="item-modal__submit" @click="handleAddToOrder">
             <span>Add to Order</span>
             <span>${{ totalPrice.toFixed(2) }}</span>
@@ -200,7 +222,7 @@ const handleAddToOrder = () => {
   flex-direction: column;
   gap: 14px;
   width: 680px;
-  max-height: calc(110vh - 48px);
+  max-height: calc(99vh - 48px);
   overflow-y: auto;
   padding: 10px;
   background-color: var(--color-deep);
@@ -244,7 +266,7 @@ const handleAddToOrder = () => {
 }
 
 .item-modal__description {
-  margin: 6px 0 0;
+  margin: 6px 0 10px;
   font-family: var(--font-body);
   font-size: 13px;
   line-height: 1.4;
@@ -443,16 +465,117 @@ const handleAddToOrder = () => {
   background-color: var(--color-gold-200);
 }
 
+
+
+
+.item-modal__stepper .item-modal__increase {
+  color: var(--color-gold);
+}
+
 @media (max-width: 768px) {
+
+  .item-modal__price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
   .item-modal {
-    align-items: flex-end;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
     padding: 0;
+    align-items: stretch;
+    justify-content: stretch;
+    z-index: 99999;
+  }
+
+  .item-modal__backdrop {
+    position: fixed;
+    inset: 0;
   }
 
   .item-modal__panel {
-    max-width: none;
-    max-height: 88vh;
-    border-radius: 20px 20px 0 0;
+    width: 100%;
+    height: 100dvh;
+    max-height: none;
+    overflow-y: auto;
+
+    padding: 14px;
+    gap: 10px;
+
+    border-radius: 0;
   }
+
+  .item-modal__header {
+    display: block;
+    padding-bottom: 5px;
+  }
+
+  .item-modal__image {
+    width: 100%;
+    height: 190px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .item-modal__info {
+    padding: 0 4px;
+  }
+
+  .item-modal__name {
+    font-size: 14px;
+    padding-top: 15px;
+  }
+
+  .item-modal__description {
+    font-size: 11px;
+    line-height: 1.35;
+    padding-bottom: 7px;
+  }
+
+  .item-modal__base-price {
+    margin: 0;
+    font-size: 14px;
+  }
+
+
+  .item-modal__stepper {
+    margin: 0;
+    margin-right: -11px;
+    transform: scale(.85);
+  }
+
+  .item-modal__section {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+
+  .item-modal__option {
+    padding: 7px 0;
+  }
+
+
+  .item-modal__footer {
+    position: static;
+    bottom: 0;
+    background: var(--color-deep);
+    padding-top: 6px;
+  }
+
+
+  .item-modal__cancel,
+  .item-modal__submit {
+    padding: 12px;
+    font-size: 11px;
+  }
+
+  .item-modal__stepper .item-modal__increase {
+    color: var(--color-gold);
+  }
+
 }
 </style>

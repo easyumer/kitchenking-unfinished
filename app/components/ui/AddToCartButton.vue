@@ -48,11 +48,13 @@ defineEmits(['click'])
   .add-to-cart {
     padding: 14px 16px;
     font-size: 14px;
+
+    border-radius: calc(100vw * 50 / 1920);
   }
 
   .add-to-cart svg {
-    width: 18px;
-    height: 18px;
+    width: 12px;
+    height: 12px;
   }
 }
 </style>

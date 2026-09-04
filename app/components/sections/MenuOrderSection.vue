@@ -100,7 +100,7 @@ onUnmounted(() => observer?.disconnect())
   }
 
   .menu-order__category {
-    scroll-margin-top: 76px;
+    scroll-margin-top: 140px;
   }
 
   .menu-order__category+.menu-order__category {

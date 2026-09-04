@@ -42,15 +42,9 @@ onUnmounted(() => window.removeEventListener('resize', updateIndicator))
   <nav class="menu-tabs">
     <span class="menu-tabs__indicator" :style="indicatorStyle" />
 
-    <button
-      v-for="category in categories"
-      :key="category.id"
-      :ref="(el) => setTabRef(category.id, el)"
-      type="button"
-      class="menu-tabs__pill"
-      :class="{ 'menu-tabs__pill--active': category.id === activeId }"
-      @click="$emit('select', category.id)"
-    >
+    <button v-for="category in categories" :key="category.id" :ref="(el) => setTabRef(category.id, el)" type="button"
+      class="menu-tabs__pill" :class="{ 'menu-tabs__pill--active': category.id === activeId }"
+      @click="$emit('select', category.id)">
       {{ category.label }}
     </button>
   </nav>
@@ -59,7 +53,7 @@ onUnmounted(() => window.removeEventListener('resize', updateIndicator))
 <style scoped>
 .menu-tabs {
   position: sticky;
-  top: 132px;
+  top: 80px;
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -67,6 +61,10 @@ onUnmounted(() => window.removeEventListener('resize', updateIndicator))
   overflow-x: auto;
   padding: 16px calc(100vw * 48 / 1920) 24px;
   scrollbar-width: none;
+  background:
+    rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(1px);
 }
 
 .menu-tabs::-webkit-scrollbar {
@@ -115,10 +113,15 @@ onUnmounted(() => window.removeEventListener('resize', updateIndicator))
 
 @media (max-width: 768px) {
   .menu-tabs {
-    top: 0;
+    top: 64px;
     justify-content: flex-start;
     gap: 8px;
     padding: 12px 16px 16px;
+    background:
+      rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(1px);
+    z-index: 1;
   }
 
   .menu-tabs__pill {

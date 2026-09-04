@@ -383,4 +383,96 @@ function selectTruck(item) {
     border-radius: 10px;
 
 }
+
+@media (max-width: 768px) {
+
+    .picker {
+        position: fixed;
+
+        top: 72px;
+        left: 12px;
+        right: 12px;
+
+        width: auto;
+        height: calc(100dvh - 140px);
+
+        padding: 12px;
+
+        border-radius: 18px;
+
+        z-index: 99999;
+    }
+
+
+    .picker-title {
+        font-size: 14px;
+        margin-bottom: 14px;
+    }
+
+
+    .truck-list {
+
+        height: calc(100dvh - 260px);
+
+        overflow-y: auto;
+
+    }
+
+
+    .truck-card {
+
+        padding: 12px;
+
+        border-radius: 10px;
+
+    }
+
+
+    .truck-top h3 {
+
+        font-size: 18px;
+
+    }
+
+
+    .truck-top p {
+
+        font-size: 13px;
+
+    }
+
+
+    .hours {
+
+        font-size: 14px;
+
+        margin: 12px 0;
+
+    }
+
+
+    .direction {
+
+        height: 38px;
+
+        font-size: 12px;
+
+    }
+
+
+    .order-btn {
+
+        position: absolute;
+
+        bottom: 12px;
+
+        left: 12px;
+
+        width: calc(100% - 24px);
+
+        height: 42px;
+
+    }
+
+}
 </style>

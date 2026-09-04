@@ -115,8 +115,6 @@ const { fadeIn, fadeUp } = useAnimation()
      same subtract-and-fillet path structure as the desktop notch. */
     .hero__card {
         aspect-ratio: 374 / 665;
-        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 374 665' preserveAspectRatio='none'%3E%3Cpath d='M374 549C374 562.255 363.255 573 350 573H101C87.7452 573 77 583.745 77 597V641C77 654.255 66.2548 665 53 665H24C10.7452 665 0 654.255 0 641V24C0 10.7452 10.7452 0 24 0H350C363.255 0 374 10.7452 374 24V549Z' fill='%23fff'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
-        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 374 665' preserveAspectRatio='none'%3E%3Cpath d='M374 549C374 562.255 363.255 573 350 573H101C87.7452 573 77 583.745 77 597V641C77 654.255 66.2548 665 53 665H24C10.7452 665 0 654.255 0 641V24C0 10.7452 10.7452 0 24 0H350C363.255 0 374 10.7452 374 24V549Z' fill='%23fff'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
     }
 
     /* No exact spec was given for the heading this round (only nav/card/button
