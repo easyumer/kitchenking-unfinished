@@ -1,4 +1,14 @@
 <script setup>
+useHead({
+  script: [
+    {
+      src: 'https://cdn.jsdelivr.net/npm/eruda',
+      onload: 'eruda.init()'
+    }
+  ]
+})
+
+
 const isNavOpen = ref(false)
 const scrolled = ref(false)
 
