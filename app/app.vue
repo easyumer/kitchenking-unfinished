@@ -3,7 +3,10 @@ useHead({
   script: [
     {
       src: 'https://cdn.jsdelivr.net/npm/eruda',
-      onload: 'eruda.init()'
+      defer: true,
+      onload: () => {
+        window.eruda?.init()
+      }
     }
   ]
 })
