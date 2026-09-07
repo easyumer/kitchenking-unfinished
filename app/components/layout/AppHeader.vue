@@ -21,6 +21,12 @@ const { itemCount } = useCart()
 
 const showLocationPicker = ref(false)
 
+// Below 768px, LocationPicker is teleported straight to <body> instead of
+// staying nested inside .app-header (see the mobile-only <Teleport> in the
+// template below for why).
+const isMobilePicker = ref(false)
+let mobileQuery
+
 
 const selectedLocation = ref(
   locations[0]
@@ -50,12 +56,16 @@ function changeLocation(location) {
 
 function handleOutsideClick(event) {
 
-  const picker = document.querySelector('.location-wrapper')
+  // .picker (LocationPicker's own root) is checked separately from
+  // .location-wrapper because on mobile it's teleported to <body> and is no
+  // longer a DOM descendant of .location-wrapper.
+  const wrapper = document.querySelector('.location-wrapper')
+  const picker = document.querySelector('.picker')
 
-  if (
-    picker &&
-    !picker.contains(event.target)
-  ) {
+  const clickedWrapper = wrapper?.contains(event.target)
+  const clickedPicker = picker?.contains(event.target)
+
+  if (!clickedWrapper && !clickedPicker) {
 
     showLocationPicker.value = false
 
@@ -64,6 +74,10 @@ function handleOutsideClick(event) {
 }
 
 
+function updateIsMobilePicker(event) {
+  isMobilePicker.value = event.matches
+}
+
 
 onMounted(() => {
 
@@ -71,6 +85,10 @@ onMounted(() => {
     'click',
     handleOutsideClick
   )
+
+  mobileQuery = window.matchMedia('(max-width: 768px)')
+  isMobilePicker.value = mobileQuery.matches
+  mobileQuery.addEventListener('change', updateIsMobilePicker)
 
 })
 
@@ -81,6 +99,8 @@ onBeforeUnmount(() => {
     'click',
     handleOutsideClick
   )
+
+  mobileQuery?.removeEventListener('change', updateIsMobilePicker)
 
 })
 
@@ -107,9 +127,22 @@ onBeforeUnmount(() => {
         </button>
 
 
-        <LocationPicker v-if="showLocationPicker" @close="showLocationPicker = false" @select="changeLocation" />
+        <LocationPicker v-if="showLocationPicker && !isMobilePicker" @close="showLocationPicker = false"
+          @select="changeLocation" />
 
       </div>
+
+      <!-- Teleported out of .app-header on mobile: the header (or motion-v's
+           own inline styles on it) can end up with a transform/backdrop-filter
+           applied, which turns it into the containing block for any
+           position:fixed descendant — breaking LocationPicker's fixed mobile
+           layout the moment that happens. Rendering it as a sibling of the
+           header entirely sidesteps that, regardless of what the header's
+           own styles do. -->
+      <Teleport to="body">
+        <LocationPicker v-if="showLocationPicker && isMobilePicker" @close="showLocationPicker = false"
+          @select="changeLocation" />
+      </Teleport>
 
       <NuxtLink to="/order" class="app-header__pill" :aria-label="`Cart, ${itemCount} items`">
         <span>{{ itemCount }}</span>
@@ -148,10 +181,27 @@ onBeforeUnmount(() => {
 
   transition:
     padding .45s ease,
-    background-color .45s ease,
-    backdrop-filter .45s ease,
     box-shadow .45s ease;
 
+}
+
+/* The blur/tint lives on a pseudo-element rather than directly on
+   .app-header itself: backdrop-filter on an element makes it the
+   containing block for any position:fixed descendant (same rule as
+   transform/filter). LocationPicker is fixed-positioned on mobile, so
+   putting backdrop-filter on .app-header directly re-anchored it to the
+   header's own small box instead of the viewport the moment you scrolled
+   — squashing it. Isolating the filter here keeps .app-header "clean". */
+.app-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background: transparent;
+  backdrop-filter: blur(0px);
+  transition: backdrop-filter .45s ease;
 }
 
 .app-header--scrolled {
@@ -161,21 +211,20 @@ onBeforeUnmount(() => {
   padding-bottom: 15px;
 
 
-  background:
-
-    linear-gradient(to bottom,
-      rgba(0, 0, 0, .85),
-      rgba(0, 0, 0, .45));
-
-
-  backdrop-filter: blur(10px);
-
-
   box-shadow:
 
     0 10px 30px rgba(0, 0, 0, .35);
 
 
+}
+
+.app-header--scrolled::before {
+  background:
+    linear-gradient(to bottom,
+      rgba(0, 0, 0, .85),
+      rgba(0, 0, 0, .45));
+
+  backdrop-filter: blur(10px);
 }
 
 .app-header__logo img {
@@ -338,17 +387,11 @@ onBeforeUnmount(() => {
     height: calc(100vw * 12 / 390);
   }
 
-  /* Mobile scroll state */
+  /* Mobile scroll state — background/backdrop-filter come from the
+     ::before rule above (same values), left un-duplicated here. */
   .app-header--scrolled {
 
     height: 64px;
-
-    background:
-      linear-gradient(to bottom,
-        rgba(0, 0, 0, 0.85),
-        rgba(0, 0, 0, 0.45));
-
-    backdrop-filter: blur(10px);
 
     box-shadow:
       0 8px 25px rgba(0, 0, 0, .35);
