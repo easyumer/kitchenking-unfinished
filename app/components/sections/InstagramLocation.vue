@@ -1,4 +1,11 @@
 <script setup>
+
+import 'leaflet/dist/leaflet.css'
+
+import markerIcon from 'leaflet/dist/images/marker-icon.png'
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
+import markerShadow from 'leaflet/dist/images/marker-shadow.png'
+
 import reel1 from '~/assets/video/signature-oxtail-sliders.mp4'
 import reel2 from '~/assets/video/SaveVid.Net_AQPOOjfL4XUgsHlTxqK0VkfEKyExw7HEqoj8OB8kygekCATFfNpDl5eWmWZxF3RC_8-3SKXUliFmQg-Xe_ZM85-f4oKnWcSiqLB86iM.mp4'
 import frameIcon from '~/assets/images/Frame.png'
@@ -42,7 +49,9 @@ onMounted(async () => {
     L.default.tileLayer(
         'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
         {
-            attribution: ''
+            maxZoom: 19,
+            crossOrigin: true,
+            attribution: '© OpenStreetMap contributors'
         }
     ).addTo(map)
 
@@ -52,10 +61,21 @@ onMounted(async () => {
     }).addTo(map)
 
 
-    L.default.marker([
-        25.0781,
-        -77.3388
-    ]).addTo(map)
+    const defaultIcon = L.default.icon({
+        iconUrl: markerIcon,
+        iconRetinaUrl: markerIcon2x,
+        shadowUrl: markerShadow,
+
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    })
+
+    L.default.marker(
+        [25.0781, -77.3388],
+        { icon: defaultIcon }
+    ).addTo(map)
 
     mapResizeObserver = new ResizeObserver(() => map.invalidateSize())
     mapResizeObserver.observe(mapEl)
