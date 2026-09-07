@@ -1,5 +1,7 @@
 <script setup>
-const { items, itemCount } = useCart()
+const { items, itemCount, subtotal, clearCart } = useCart()
+const { confirmOrder } = useOrderConfirmation()
+const { taxRate } = useSiteConfig()
 const { fadeUp } = useAnimation()
 
 const contactName = ref('')
@@ -7,10 +9,18 @@ const contactPhone = ref('')
 const paymentMethod = ref('card')
 const orderNote = ref('')
 
-const orderPlaced = ref(false)
+const tax = computed(() => subtotal.value * taxRate)
+const grandTotal = computed(() => subtotal.value + tax.value)
 
 const handlePlaceOrder = () => {
-  orderPlaced.value = true
+  confirmOrder(contactName.value, {
+    subtotal: subtotal.value,
+    tax: tax.value,
+    grandTotal: grandTotal.value,
+    itemCount: itemCount.value
+  })
+  clearCart()
+  navigateTo('/order-confirmation')
 }
 </script>
 

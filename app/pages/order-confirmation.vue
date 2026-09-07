@@ -3,23 +3,24 @@ import { checkoutPattern } from '~/assets/images'
 import checkoutPatternMobile from '~/assets/images/Background pattern mobile.png'
 
 useSeoMeta({
-  title: 'Your Cart | Kitchen King',
-  description: 'Review your order and check out for pickup at Kitchen King, Nassau Bahamas.'
+  title: 'Order Confirmed | Kitchen King',
+  description: 'Your Kitchen King order has been confirmed.'
 })
+
 </script>
 
 <template>
-  <main class="checkout-page" :style="{
+  <main class="order-confirmation" :style="{
     '--checkout-pattern': `url('${checkoutPattern}')`,
     '--checkout-pattern-mobile': `url('${checkoutPatternMobile}')`
   }">
-    <CartCheckoutSection />
+    <OrderConfirmationSection />
     <FooterSection />
   </main>
 </template>
 
 <style scoped>
-.checkout-page {
+.order-confirmation {
   min-height: 100vh;
   background-color: #050505;
   background-image: var(--checkout-pattern);
@@ -28,8 +29,10 @@ useSeoMeta({
   background-size: auto;
 }
 
+
+
 @media (max-width: 768px) {
-  .checkout-page {
+  .order-confirmation {
     background-image: var(--checkout-pattern-mobile);
     background-position: center top;
     background-size: 100% auto;

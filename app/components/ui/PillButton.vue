@@ -1,14 +1,23 @@
 <script setup>
 defineProps({
   variant: { type: String, default: 'outline' }, // 'outline' | 'accent' | 'solid'
-  to: { type: String, default: null }
+  to: { type: String, default: null },
+  href: { type: String, default: null } // external link — renders as <a target="_blank">
 })
 
 const NuxtLink = resolveComponent('NuxtLink')
 </script>
 
 <template>
-  <component :is="to ? NuxtLink : 'button'" :to="to" class="pill-button" :class="`pill-button--${variant}`">
+  <component
+    :is="href ? 'a' : (to ? NuxtLink : 'button')"
+    :to="to"
+    :href="href"
+    :target="href ? '_blank' : undefined"
+    :rel="href ? 'noopener noreferrer' : undefined"
+    class="pill-button"
+    :class="`pill-button--${variant}`"
+  >
     <slot />
   </component>
 </template>

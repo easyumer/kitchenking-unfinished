@@ -40,9 +40,13 @@ export const useCart = () => {
     }
   }
 
+  const clearCart = () => {
+    items.splice(0, items.length)
+  }
+
   const itemCount = computed(() => items.reduce((sum, item) => sum + item.quantity, 0))
 
   const subtotal = computed(() => items.reduce((sum, item) => sum + parsePrice(item.price) * item.quantity, 0))
 
-  return { items, addItem, removeItem, incrementItem, decrementItem, itemCount, subtotal }
+  return { items, addItem, removeItem, incrementItem, decrementItem, clearCart, itemCount, subtotal }
 }

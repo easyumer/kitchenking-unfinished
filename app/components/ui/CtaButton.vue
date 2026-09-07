@@ -79,7 +79,7 @@ const props = defineProps({
 
   display: block;
 
-  height: 2em;
+  height: 2.5em;
 
   line-height: 1.5;
 

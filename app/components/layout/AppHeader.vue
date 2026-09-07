@@ -9,6 +9,7 @@ const props = defineProps({
 
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { locations } from '~/data/locations'
+import { watch } from 'vue'
 
 
 defineEmits(['toggle-nav'])
@@ -26,6 +27,16 @@ const selectedLocation = ref(
 )
 
 
+watch(showLocationPicker, (value) => {
+
+  if (value) {
+    document.body.style.overflow = "hidden"
+  }
+  else {
+    document.body.style.overflow = ""
+  }
+
+})
 
 function changeLocation(location) {
 

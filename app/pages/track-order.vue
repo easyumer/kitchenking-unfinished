@@ -1,25 +1,26 @@
 <script setup>
+
 import { checkoutPattern } from '~/assets/images'
 import checkoutPatternMobile from '~/assets/images/Background pattern mobile.png'
 
 useSeoMeta({
-  title: 'Your Cart | Kitchen King',
-  description: 'Review your order and check out for pickup at Kitchen King, Nassau Bahamas.'
+  title: 'Track Order | Kitchen King',
+  description: 'Track your Kitchen King order status.'
 })
 </script>
 
 <template>
-  <main class="checkout-page" :style="{
+  <main class="track-order-page" :style="{
     '--checkout-pattern': `url('${checkoutPattern}')`,
     '--checkout-pattern-mobile': `url('${checkoutPatternMobile}')`
   }">
-    <CartCheckoutSection />
+    <TrackOrderSection />
     <FooterSection />
   </main>
 </template>
 
 <style scoped>
-.checkout-page {
+.track-order-page {
   min-height: 100vh;
   background-color: #050505;
   background-image: var(--checkout-pattern);
@@ -29,7 +30,7 @@ useSeoMeta({
 }
 
 @media (max-width: 768px) {
-  .checkout-page {
+  .track-order-page {
     background-image: var(--checkout-pattern-mobile);
     background-position: center top;
     background-size: 100% auto;

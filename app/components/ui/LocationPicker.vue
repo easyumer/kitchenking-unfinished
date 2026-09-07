@@ -387,43 +387,74 @@ function selectTruck(item) {
 @media (max-width: 768px) {
 
     .picker {
+
         position: fixed;
 
-        top: 72px;
+        top: 80px;
         left: 12px;
         right: 12px;
 
         width: auto;
-        height: calc(100dvh - 140px);
 
-        padding: 12px;
+        height: calc(100vh - 160px);
+
+        max-height: 520px;
+
+        padding: 14px;
 
         border-radius: 18px;
 
         z-index: 99999;
+
+        display: flex;
+        flex-direction: column;
+
     }
 
 
     .picker-title {
-        font-size: 14px;
-        margin-bottom: 14px;
+
+        flex-shrink: 0;
+
+        font-size: 16px;
+
+        margin-bottom: 15px;
+
+        padding-left: 5px;
+
     }
+
 
 
     .truck-list {
 
-        height: calc(100dvh - 260px);
+        flex: 1;
+
+        height: auto;
 
         overflow-y: auto;
+
+        padding-right: 5px;
+
+        min-height: 0;
 
     }
 
 
+
     .truck-card {
 
-        padding: 12px;
+        padding: 14px;
 
-        border-radius: 10px;
+        margin-bottom: 12px;
+
+    }
+
+
+
+    .truck-top {
+
+        gap: 10px;
 
     }
 
@@ -435,11 +466,15 @@ function selectTruck(item) {
     }
 
 
+
     .truck-top p {
 
         font-size: 13px;
 
+        line-height: 18px;
+
     }
+
 
 
     .hours {
@@ -451,6 +486,7 @@ function selectTruck(item) {
     }
 
 
+
     .direction {
 
         height: 38px;
@@ -460,17 +496,18 @@ function selectTruck(item) {
     }
 
 
+
     .order-btn {
 
-        position: absolute;
+        position: static;
 
-        bottom: 12px;
+        flex-shrink: 0;
 
-        left: 12px;
+        width: 100%;
 
-        width: calc(100% - 24px);
+        height: 45px;
 
-        height: 42px;
+        margin-top: 12px;
 
     }
 
