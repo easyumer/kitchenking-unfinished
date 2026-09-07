@@ -2,9 +2,7 @@
 
 import 'leaflet/dist/leaflet.css'
 
-import markerIcon from 'leaflet/dist/images/marker-icon.png'
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
-import markerShadow from 'leaflet/dist/images/marker-shadow.png'
+
 
 import reel1 from '~/assets/video/signature-oxtail-sliders.mp4'
 import reel2 from '~/assets/video/SaveVid.Net_AQPOOjfL4XUgsHlTxqK0VkfEKyExw7HEqoj8OB8kygekCATFfNpDl5eWmWZxF3RC_8-3SKXUliFmQg-Xe_ZM85-f4oKnWcSiqLB86iM.mp4'
@@ -61,15 +59,15 @@ onMounted(async () => {
     }).addTo(map)
 
 
-    const defaultIcon = L.default.icon({
-        iconUrl: markerIcon,
-        iconRetinaUrl: markerIcon2x,
-        shadowUrl: markerShadow,
-
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
+    const defaultIcon = L.default.divIcon({
+        className: 'kitchen-king-map-pin',
+        html: `
+        <div class="kitchen-king-pin-shape">
+            <span></span>
+        </div>
+    `,
+        iconSize: [30, 40],
+        iconAnchor: [15, 40]
     })
 
     L.default.marker(
@@ -368,8 +366,38 @@ onUnmounted(() => {
 }
 
 
-:global(.leaflet-marker-icon) {
-    filter: hue-rotate(140deg);
+:global(.kitchen-king-map-pin) {
+    background: transparent;
+    border: none;
+}
+
+:global(.kitchen-king-pin-shape) {
+    position: relative;
+
+    width: 26px;
+    height: 26px;
+
+    background: #000;
+    border: 3px solid #fff;
+
+    border-radius: 50% 50% 50% 0;
+
+    transform: rotate(-45deg);
+
+    box-sizing: border-box;
+}
+
+:global(.kitchen-king-pin-shape span) {
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    left: 7px;
+    top: 7px;
+
+    background: #fff;
+    border-radius: 50%;
 }
 
 
