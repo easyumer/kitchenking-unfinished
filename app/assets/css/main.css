@@ -126,3 +126,20 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.3);
 }
+
+/* TEMP iPhone animation debugging */
+@media (max-width: 768px) {
+  .app-header,
+  .hero__card,
+  .hero__heading,
+  .hero__cta-wrap,
+  .story__panel {
+    opacity: 1 !important;
+  }
+
+  .hero__heading,
+  .hero__cta-wrap,
+  .story__panel {
+    transform: translateY(0) !important;
+  }
+}
