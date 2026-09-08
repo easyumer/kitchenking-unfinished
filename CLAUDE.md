@@ -98,15 +98,17 @@ Registered as a Nuxt module in `nuxt.config.js` (`modules: ['motion-v/nuxt']`), 
 
 ### Composable pattern
 
-All reusable animation configs live in a composable inside `composables/`. Components consume configs from there — they do not define their own. Configs must respect `prefers-reduced-motion` via `useReducedMotion()`.
+All reusable animation configs live in a composable inside `composables/`. Components consume configs from there — they do not define their own. Configs must respect `prefers-reduced-motion` via `usePrefersReducedMotion()` — **not** motion-v's own `useReducedMotion()`. motion-v's version (via VueUse's `useMediaQuery`) resolves synchronously the moment it's called, which on a device that already has Reduce Motion on makes the client's first (hydration) render disagree with the server-rendered HTML. Vue doesn't force a mismatched inline `style` back in sync during hydration, so an element motion-v hid on the server can stay hidden forever. `usePrefersReducedMotion()` (in `composables/usePrefersReducedMotion.js`) always starts at `false` on both server and the client's first render, then reads the real value inside `onMounted` — so any correction is a genuine reactive update, not a hydration mismatch.
+
+Every reduced-motion branch must also resolve to an explicit, final visible state — `{ initial: false }` alone only skips the *entrance* animation, it does not guarantee the element ends up visible. Pair it with the same `animate` target the full-motion branch uses (with `transition: { duration: 0 }`), so both branches always converge on the same rendered result:
 
 ```js
 // composables/useAnimation.js
 export const useAnimation = () => {
-  const prefersReduced = useReducedMotion()
+  const prefersReduced = usePrefersReducedMotion()
 
   const fadeUp = computed(() => prefersReduced.value
-    ? { initial: false }
+    ? { initial: false, animate: { opacity: 1, y: 0 }, transition: { duration: 0 } }
     : {
         initial: { opacity: 0, y: 40 },
         animate: { opacity: 1, y: 0 },

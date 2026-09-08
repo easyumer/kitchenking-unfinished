@@ -1,6 +1,18 @@
 <script setup>
-const prefersReduced = useReducedMotion()
+// Not motion-v's own useReducedMotion() — see usePrefersReducedMotion.js for
+// why that one can disagree with the server on the very first client render.
+const prefersReduced = usePrefersReducedMotion()
 const { fadeIn, fadeUp } = useAnimation()
+
+// The `autoplay` attribute itself has to stay on for SSR/initial paint (the
+// real preference isn't known until after mount — see usePrefersReducedMotion),
+// so a device that already has Reduce Motion on can still have the browser
+// start playback from that attribute before the correction lands. Pausing
+// explicitly once the real value is in closes that gap.
+const videoRef = ref(null)
+watch(prefersReduced, (reduced) => {
+  if (reduced) videoRef.value?.pause()
+})
 </script>
 
 <template>
@@ -8,6 +20,7 @@ const { fadeIn, fadeUp } = useAnimation()
     <div class="hero__frame">
       <Motion as="div" v-bind="fadeIn" class="hero__card">
         <video
+          ref="videoRef"
           class="hero__media"
           src="~/assets/video/hero-loop.mp4"
           poster="~/assets/video/hero-loop-poster.jpg"

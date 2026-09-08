@@ -1,5 +1,7 @@
 export const useAnimation = () => {
-  const prefersReduced = useReducedMotion();
+  // Not motion-v's own useReducedMotion() — see usePrefersReducedMotion.js
+  // for why that one is unsafe to use directly under SSR/hydration.
+  const prefersReduced = usePrefersReducedMotion();
 
   const fadeUp = computed(() =>
     prefersReduced.value

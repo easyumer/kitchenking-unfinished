@@ -178,6 +178,24 @@ onUnmounted(() => {
     translateX(50px);
 }
 
+/* This scroll-driven "leaving" effect is a motion effect like any other —
+   fading/rotating/translating copy purely because the user scrolled past it
+   isn't essential to reading the section, so reduced-motion users keep the
+   content fully visible and in place instead. */
+@media (prefers-reduced-motion: reduce) {
+  .fresh-take__content--leaving {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .fresh-take__content--leaving .fresh-take__heading,
+  .fresh-take__content--leaving .fresh-take__copy {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (max-width: 768px) {
 
   .fresh-take {
