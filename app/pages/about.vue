@@ -1,15 +1,22 @@
 <script setup>
 useSeoMeta({
-  title: 'About | Kitchen King',
-  description: 'The story behind Kitchen King — Caribbean flavors in Nassau, Bahamas.'
+  title: 'Kitchen King | Caribbean Restaurant, Nassau Bahamas',
+  description: 'Fresh Caribbean flavors in Nassau, Bahamas. Dine in, order online, or reserve a table.',
+  ogTitle: 'Kitchen King',
+  ogDescription: 'Fresh Caribbean flavors in Nassau, Bahamas.'
 })
 </script>
 
 <template>
-  <main>
-    <ComingSoonSection
-      title="About Us"
-      description="Our full story is being written up. Read the short version on the homepage for now."
-    />
+  <main id="about" class="about">
+    <LocationSection />
+    <FaqSection />
+    <FooterSection />
   </main>
 </template>
+
+<style scoped>
+.menu {
+  min-height: 100vh;
+}
+</style>

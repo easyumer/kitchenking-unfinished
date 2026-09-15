@@ -139,7 +139,7 @@ const handleAddToOrder = () => {
     <div v-if="open && item" class="item-modal" role="dialog" aria-modal="true">
       <Motion as="div" v-bind="fadeIn" class="item-modal__backdrop" @click="closeModal" />
 
-      <Motion as="div" v-bind="fadeUp" class="item-modal__panel">
+      <Motion as="div" v-bind="fadeUp" class="item-modal__panel" data-lenis-prevent>
         <div class="item-modal__header">
           <img v-if="item.image" class="item-modal__image" :src="item.image" :alt="item.name" />
           <div v-else class="item-modal__image item-modal__image--placeholder" />

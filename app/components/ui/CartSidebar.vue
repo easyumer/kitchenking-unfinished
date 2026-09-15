@@ -4,7 +4,7 @@ const { items, itemCount, subtotal } = useCart()
 
 <template>
   <aside class="cart-sidebar">
-    <div class="cart-sidebar__panel">
+    <div class="cart-sidebar__panel" data-lenis-prevent>
       <p v-if="!items.length" class="cart-sidebar__empty">Your cart is empty — add something tasty.</p>
       <CartLineItem v-for="item in items" :key="item.id" :item="item" />
     </div>

@@ -4,30 +4,11 @@ import 'leaflet/dist/leaflet.css'
 
 
 
-import reel1 from '~/assets/video/signature-oxtail-sliders.mp4'
-import reel2 from '~/assets/video/SaveVid.Net_AQPOOjfL4XUgsHlTxqK0VkfEKyExw7HEqoj8OB8kygekCATFfNpDl5eWmWZxF3RC_8-3SKXUliFmQg-Xe_ZM85-f4oKnWcSiqLB86iM.mp4'
 import frameIcon from '~/assets/images/Frame.png'
+import mapIconPlaceholder from '~/assets/images/logos/Map Icon Placeholder.svg'
 import { onMounted, onUnmounted } from 'vue'
 
 
-const instagramPosts = [
-    {
-        video: reel1,
-        alt: 'Kitchen King Instagram post'
-    },
-    {
-        video: reel2,
-        alt: 'Kitchen King Instagram post'
-    },
-    {
-        video: reel1,
-        alt: 'Kitchen King Instagram post'
-    },
-    {
-        video: reel2,
-        alt: 'Kitchen King Instagram post'
-    }
-]
 let mapResizeObserver
 
 onMounted(async () => {
@@ -89,20 +70,6 @@ onUnmounted(() => {
 <template>
     <section class="social-location">
 
-        <!-- Instagram -->
-        <div class="instagram">
-            <h2 class="instagram__heading">
-                YES WE'RE ON INSTAGRAM!
-            </h2>
-
-            <div class="instagram__grid">
-                <a v-for="(post, index) in instagramPosts" :key="index" href="#" class="instagram__card"
-                    aria-label="View Kitchen King Instagram post">
-                    <video :src="post.video" autoplay muted loop playsinline />
-                </a>
-            </div>
-        </div>
-
         <!-- Location -->
         <div class="location">
 
@@ -133,13 +100,33 @@ onUnmounted(() => {
                 </a>
             </div>
 
-            <ClientOnly>
+            <div class="location__map-panel">
 
-                <div class="location__map">
-                    <div id="map"></div>
+                <ClientOnly>
+
+                    <div class="location__map">
+                        <div id="map"></div>
+                    </div>
+
+                </ClientOnly>
+
+                <div class="location__map-links">
+
+                    <a href="https://www.google.com/maps/search/?api=1&query=West+Bay+Street+Nassau+Bahamas"
+                        target="_blank" rel="noopener noreferrer" class="location__map-link">
+                        SHOW ON GOOGLE MAPS
+                        <img :src="mapIconPlaceholder" alt="" class="location__map-link-icon" />
+                    </a>
+
+                    <a href="https://maps.apple.com/?q=West+Bay+Street+Nassau+Bahamas" target="_blank"
+                        rel="noopener noreferrer" class="location__map-link">
+                        SHOW ON APPLE MAPS
+                        <img :src="mapIconPlaceholder" alt="" class="location__map-link-icon" />
+                    </a>
+
                 </div>
 
-            </ClientOnly>
+            </div>
 
         </div>
 
@@ -152,7 +139,7 @@ onUnmounted(() => {
     position: relative;
 
     padding:
-        0 calc(100vw * 48 / 1920) calc(100vw * 160 / 1920);
+        0 calc(100vw * 48 / 1920) calc(100vw * 120 / 1920);
 
     background: #050505;
 
@@ -182,63 +169,6 @@ onUnmounted(() => {
 }
 
 /* =========================================
-   INSTAGRAM
-========================================= */
-
-.instagram {
-    margin-bottom: calc(100vw * 48 / 1920);
-}
-
-.instagram__heading {
-    margin: 0 0 calc(100vw * 45 / 1920);
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: calc(100vw * 64 / 1920);
-    line-height: 1.125;
-    text-transform: uppercase;
-    color: var(--color-white);
-}
-
-.instagram__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: calc(100vw * 20 / 1920);
-
-    width: 94%;
-    margin: 0 auto;
-}
-
-.instagram__card {
-    position: relative;
-    z-index: 2;
-
-    margin-bottom: 0;
-    display: block;
-    aspect-ratio: 1 / 1.25;
-    height: 500px;
-    width: 100%;
-    overflow: hidden;
-    border-radius: calc(100vw * 12 / 1920);
-    background: #222;
-}
-
-
-
-
-.instagram__card video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s var(--ease-out-expo);
-}
-
-.instagram__card:hover video {
-    transform: scale(1.04);
-}
-
-
-/* =========================================
    LOCATION
 ========================================= */
 
@@ -249,10 +179,10 @@ onUnmounted(() => {
     margin-top: calc(-100vw * 240 / 1920);
     grid-template-columns: 0.8fr 1.2fr;
     min-height: calc(100vw * 300 / 1920);
-    padding: calc(100vw * 50 / 1920);
-    padding-top: calc(100vw * 300 / 1920);
+    padding: calc(100vw * 80 / 1920);
+    padding-top: calc(100vw * 250 / 1920);
 
-    padding-bottom: calc(100vw * 150 / 1920);
+    padding-bottom: calc(100vw * 120 / 1920);
     gap: calc(100vw * 48 / 1920);
 
     border-radius: calc(100vw * 16 / 1920);
@@ -270,7 +200,8 @@ onUnmounted(() => {
 .location__content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    gap: calc(100vw * 40 / 1920);
     color: var(--color-deep);
 }
 
@@ -310,31 +241,73 @@ onUnmounted(() => {
     align-items: center;
     justify-content: space-between;
 
-    width: calc(100vw * 600 / 1920);
-    min-height: calc(100vw * 40 / 1920);
-    padding: 0 12px;
+    width: 360px;
+    height: calc(100vw * 56 / 1920);
+    padding: 0 calc(100vw * 20 / 1920);
 
-    border-radius: 4px;
+    border-radius: 10px;
     background: var(--color-deep);
     color: var(--color-white);
 
     font-family: var(--font-body);
-    font-size: calc(100vw * 11 / 1920);
+    font-size: calc(100vw * 13 / 1920);
     font-weight: 600;
     text-decoration: none;
 }
 
 .location__button-icon {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     object-fit: contain;
+}
+
+.location__map-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    background: var(--color-deep);
+    border: 5px solid var(--color-deep);
+    border-radius: 16px;
+    overflow: hidden;
 }
 
 .location__map {
     height: calc(100vw * 400 / 1920);
-    overflow: hidden;
-    border-radius: 8px;
-    border: 3px solid var(--color-deep);
+}
+
+.location__map-links {
+    display: flex;
+    gap: 12px;
+}
+
+.location__map-link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: calc(100vw * 56 / 1920);
+    padding: 0 calc(100vw * 20 / 1920);
+
+    background: var(--color-white);
+    color: var(--color-deep);
+    border-radius: 12px;
+
+    font-family: var(--font-body);
+    font-size: calc(100vw * 13 / 1920);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+.location__map-link-icon {
+    width: calc(100vw * 20 / 1920);
+    height: calc(100vw * 20 / 1920);
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 :global(#map) {
@@ -414,44 +387,13 @@ onUnmounted(() => {
         height: 48px;
     }
 
-    .instagram {
-        margin-bottom: 16px;
-    }
-
-    .instagram__heading {
-        font-size: 32px;
-        margin-bottom: 20px;
-    }
-
-    .instagram__grid {
-        display: flex;
-        grid-template-columns: none;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        gap: 12px;
-    }
-
-    .instagram__grid::-webkit-scrollbar {
-        display: none;
-    }
-
-    .instagram__card {
-        flex: 0 0 82%;
-        height: auto;
-        aspect-ratio: 0.78;
-        scroll-snap-align: start;
-        border-radius: 12px;
-    }
-
     .location {
         display: flex;
         flex-direction: column;
 
         min-height: auto;
         margin-top: -80px;
-        padding: 150px 20px 24px;
+        padding: 120px 20px 24px;
         gap: 24px;
 
         border-radius: 12px;
@@ -471,11 +413,10 @@ onUnmounted(() => {
     }
 
     .location__button {
-        width: auto;
-        height: 34px;
-        min-height: 34px;
+        width: 100%;
+        height: 44px;
         padding: 0 16px;
-        font-size: 11px;
+        font-size: 12px;
     }
 
     .location__button-icon {
@@ -483,14 +424,38 @@ onUnmounted(() => {
         height: 14px;
     }
 
+    .location__map-panel {
+        gap: 8px;
+
+        border-width: 3px;
+        border-radius: 12px;
+        border: 5px solid var(--color-deep);
+    }
+
     .location__map {
         height: 220px;
         min-height: 220px;
-        border-radius: 8px;
     }
 
     .location__map iframe {
         min-height: 220px;
+    }
+
+    .location__map-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .location__map-link {
+        height: 44px;
+        padding: 10px 16px;
+        font-size: 11px;
+        border-radius: 8px;
+    }
+
+    .location__map-link-icon {
+        width: 16px;
+        height: 16px;
     }
 }
 </style>

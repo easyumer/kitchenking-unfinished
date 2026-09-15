@@ -15,7 +15,8 @@ useSeoMeta({
     <BestsellersSection />
     <DealsSection />
     <FreshTakeSection />
-    <InstagramLocation />
+    <InstagramSection />
+    <LocationSection />
     <FaqSection />
     <FooterSection />
   </main>

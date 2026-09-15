@@ -77,7 +77,7 @@ onUnmounted(() => {
   position: relative;
 
   /* Gives the sticky content enough distance to travel */
-  min-height: 220vh;
+  min-height: 240vh;
 
   border-radius: calc(100vw * 32 / 1920);
 
@@ -208,7 +208,7 @@ onUnmounted(() => {
       More height so sticky effect has
       enough scrolling space on mobile
     */
-    min-height: 200vh;
+    min-height: 260vh;
 
     aspect-ratio: auto;
 

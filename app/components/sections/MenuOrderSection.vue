@@ -2,13 +2,22 @@
 const categories = useMenuData()
 const activeId = ref(categories[0].id)
 const sectionRefs = {}
+const lenis = useLenis()
 
 const setSectionRef = (id, el) => {
   if (el) sectionRefs[id] = el
 }
 
+// Page scroll is now driven by Lenis (see app.vue) — a native scrollIntoView
+// here would animate the real scroll position at the same time Lenis is
+// already animating it toward its own target, and the two fight each other.
+// lenis.scrollTo() reads the same `scroll-margin-top` this relies on for
+// header clearance, so the offset behavior is unchanged.
 const scrollToCategory = (id) => {
-  sectionRefs[id]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const el = sectionRefs[id]
+  if (!el) return
+  if (lenis.value) lenis.value.scrollTo(el)
+  else el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
 let observer

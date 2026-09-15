@@ -21,7 +21,7 @@ defineProps({
         </div>
 
 
-        <div class="cart-panel__items">
+        <div class="cart-panel__items" data-lenis-prevent>
 
             <CartOrderLineItem v-for="item in items" :key="item.id" :item="item" />
 

@@ -11,7 +11,8 @@ useSeoMeta({
   <main id="menu" class="menu">
     <MenuHeroSection />
     <MenuOrderSection />
-    <InstagramLocation />
+    <InstagramSection />
+    <LocationSection />
     <FaqSection />
     <FooterSection />
   </main>

@@ -56,7 +56,7 @@ function selectTruck(item) {
 
 
 
-        <div class="truck-list">
+        <div class="truck-list" data-lenis-prevent>
 
 
             <div v-for="item in locations" :key="item.name" class="truck-card" @click="selectTruck(item)"

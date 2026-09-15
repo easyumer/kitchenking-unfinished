@@ -1,38 +1,22 @@
 <script setup>
+import footerLogo from '~/assets/images/Footer KK logo.png'
 import facebookLogo from '~/assets/images/logos/Facebook logo.png'
 import instagramLogo from '~/assets/images/logos/Instagram Logo.png'
 
-const navigation = [
-    {
-        name: "Homepage",
-        path: "/#home"
-    },
-    {
-        name: "Our Menu",
-        path: "/menu"
-    },
-    {
-        name: "Order Online",
-        path: "/order"
-    },
-    {
-        name: "Gallery",
-        path: "/gallery"
-    },
-    {
-        name: "About",
-        path: "/about"
-    },
-    {
-        name: "Portfolio",
-        path: "/portfolio"
-    },
-    {
-        name: "Contact",
-        path: "/contact"
-    }
-]
+const { contact, timings, social } = useSiteConfig()
 
+const navColumns = [
+    [
+        { name: "Homepage", path: "/#home" },
+        { name: "Our Menu", path: "/menu" },
+        { name: "Gallery", path: "/gallery" }
+    ],
+    [
+        { name: "About", path: "/about" },
+        { name: "Portfolio", path: "/portfolio" },
+        { name: "Contact", path: "/contact" }
+    ]
+]
 </script>
 
 
@@ -40,118 +24,99 @@ const navigation = [
 
     <footer class="footer">
 
+        <div class="footer__top">
 
-        <div class="footer__grid">
+            <!-- Brand -->
+            <div class="footer__brand">
+
+                <NuxtLink to="/#home" aria-label="Kitchen King home">
+                    <img :src="footerLogo" alt="Kitchen King" class="footer__logo" />
+                </NuxtLink>
+
+            </div>
+
+
+            <!-- Navigate -->
+            <div class="footer__column footer__nav">
+
+                <h3>NAVIGATE</h3>
+
+                <div class="footer__nav-columns">
+
+                    <ul v-for="(column, i) in navColumns" :key="i">
+
+                        <li v-for="item in column" :key="item.name">
+
+                            <NuxtLink :to="item.path">
+                                {{ item.name }}
+                            </NuxtLink>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
 
 
             <!-- Visit -->
-            <div class="footer__column">
+            <div class="footer__column footer__visit">
 
-                <h3>
-                    VISIT US
-                </h3>
+                <h3>VISIT US</h3>
 
                 <p>
-                    West Bay St,<br>
-                    Nassau, Bahamas
+                    {{ contact.addressLines[0] }},<br>
+                    {{ contact.addressLines[1] }}
                 </p>
-
 
                 <p>
-                    info@kitchenking.com<br>
-                    +1 242 000 0000
+                    {{ contact.email }}<br>
+                    {{ contact.phone }}
                 </p>
-
 
             </div>
 
 
+            <!-- Hours + Social -->
+            <div class="footer__column footer__hours-social">
 
+                <div class="footer__hours">
 
-            <!-- Hours -->
-            <div class="footer__column footer__hours">
+                    <h3>OPENING HOURS</h3>
 
-                <h3>
-                    OPENING HOURS
-                </h3>
+                    <p>
+                        Monday – Sunday<br>
+                        {{ timings }}
+                    </p>
 
-
-                <p>
-                    Monday - Sunday<br>
-                    11:00 AM - 8:00 PM
-                </p>
-
-
-            </div>
-
-
-
-
-
-            <!-- Navigation -->
-            <div class="footer__column footer__nav">
-
-
-                <h3>
-                    NAVIGATE
-                </h3>
-
-
-                <ul>
-
-                    <li v-for="item in navigation" :key="item.name">
-
-                        <NuxtLink :to="item.path">
-                            {{ item.name }}
-                        </NuxtLink>
-
-                    </li>
-
-                </ul>
-
-
-            </div>
-
-
-
-
-
-
-            <!-- Social -->
-            <div class="footer__column footer__social">
-
-
-                <h3>
-                    FOLLOW US
-                </h3>
-
-
-
-                <div class="footer__icons">
-
-                    <a href="#" aria-label="Facebook" class="footer__social-link">
-                        <img :src="facebookLogo" alt="Facebook" />
-                    </a>
-
-                    <a href="#" aria-label="Instagram" class="footer__social-link">
-                        <img :src="instagramLogo" alt="Instagram" />
-                    </a>
                 </div>
 
+                <div class="footer__social">
 
+                    <h3>FOLLOW US</h3>
+
+                    <div class="footer__icons">
+
+                        <a :href="social.facebook" aria-label="Facebook" class="footer__social-link">
+                            <img :src="facebookLogo" alt="Facebook" />
+                        </a>
+
+                        <a :href="social.instagram" aria-label="Instagram" class="footer__social-link">
+                            <img :src="instagramLogo" alt="Instagram" />
+                        </a>
+
+                    </div>
+
+                </div>
 
             </div>
-
-
 
         </div>
 
 
-
-        <div class="footer__copyright">
-
+        <div class="footer__bottom">
             © 2026 Kitchen King. All rights reserved.
-
         </div>
 
 
@@ -164,240 +129,130 @@ const navigation = [
 
 <style scoped>
 .footer {
-
-
     position: relative;
-
     z-index: 5;
 
-    margin:
-        calc(-100vw * 80 / 1920) 0 0;
-
-
-    padding:
-
-        calc(100vw * 110 / 1920) calc(100vw * 45 / 1920) calc(100vw * 60 / 1920);
-
+    margin: calc(-100vw * 80 / 1920) 0 0;
+    padding: calc(100vw * 110 / 1920) calc(100vw * 45 / 1920) calc(100vw * 20 / 1920);
 
     background: #1b1b1b;
+    border-radius: calc(100vw * 20 / 1920) calc(100vw * 20 / 1920) calc(100vw * 20 / 1920) calc(100vw * 20 / 1920);
 
-
-    border-radius:
-        calc(100vw * 20 / 1920) calc(100vw * 20 / 1920) 0 0;
-
-
+    margin-bottom: 10px;
     overflow: hidden;
-
-
     color: white;
-
 }
 
 
-
-
-.footer__grid {
-
-
+.footer__top {
     display: grid;
-
-
-    grid-template-columns:
-
-        1.2fr 1fr 1fr .8fr;
-
-
+    grid-template-columns: 1.6fr 0.8fr 0.7fr 0.6fr;
+    align-items: start;
     gap: 40px;
-
-
 }
 
 
+.footer__brand {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+}
+
+
+.footer__logo {
+    width: 100%;
+    max-width: calc(100vw * 570 / 1920);
+}
 
 
 .footer__column h3 {
-
-
     margin: 0 0 22px;
 
-
     font-family: var(--font-display);
-
-
-    font-size:
-
-        calc(100vw * 20 / 1920);
-
-
+    font-size: calc(100vw * 20 / 1920);
     font-weight: 600;
-
-
     color: white;
-
-
 }
-
 
 
 .footer__column p {
-
-
     margin: 0 0 15px;
 
-
     font-family: var(--font-body);
-
-
-    font-size:
-
-        calc(100vw * 15 / 1920);
-
-
+    font-size: calc(100vw * 15 / 1920);
     line-height: 1.4;
-
-
     color: rgba(255, 255, 255, .45);
+}
 
-
+.footer__column p:last-child {
+    margin-bottom: 0;
 }
 
 
-
-
-.footer__hours {
-
-
-    text-align: right;
-
+.footer__nav-columns {
+    display: flex;
+    gap: 50px;
 }
 
-
-
-.footer__nav {
-
-
-    text-align: right;
-
-}
-
-
-
-.footer__nav ul {
-
-
+.footer__nav-columns ul {
     list-style: none;
-
-    padding: 0;
-
     margin: 0;
-
-
+    padding: 0;
 }
 
-
-
-.footer__nav li {
-
-
+.footer__nav-columns li {
     margin-bottom: 8px;
 
-
     font-family: var(--font-body);
-
-
-    font-size:
-
-        calc(100vw * 15 / 1920);
-
-
+    font-size: calc(100vw * 15 / 1920);
     color: rgba(255, 255, 255, .45);
-
-
 }
 
-.footer__nav a {
-
+.footer__nav-columns a {
     text-decoration: none;
-
-    color: rgba(255, 255, 255, .45);
-
-    transition:
-        color .3s ease;
-
+    color: inherit;
+    transition: color .3s ease;
 }
 
-
-.footer__nav a:hover {
-
+.footer__nav-columns a:hover {
     color: white;
-
 }
 
 
-
+.footer__hours-social {
+    display: flex;
+    flex-direction: column;
+}
 
 .footer__social {
-
-
-    text-align: right;
-
+    margin-top: 22px;
 }
-
 
 
 .footer__icons {
-
-
     display: flex;
-
-    justify-content: flex-end;
-
     gap: 10px;
-
-
 }
 
-
-
 .footer__icons a {
-
-
     width: 32px;
-
     height: 32px;
 
-
-    border-radius: 50%;
-
-
     display: flex;
-
+    align-items: center;
     justify-content: center;
 
-    align-items: center;
-
-
+    border-radius: 50%;
     background: #3a3a3a;
-
-
     color: white;
-
-
     text-decoration: none;
-
-
-    font-size: 14px;
-
-
 }
 
 .footer__icons a img {
-    width: 10px;
-    height: 10px;
-
+    width: 16px;
+    height: 16px;
     object-fit: contain;
-
-    display: block;
+    transition: transform .3s ease;
 }
 
 .footer__icons a:hover {
@@ -409,30 +264,14 @@ const navigation = [
     transform: scale(1.1);
 }
 
-.footer__icons a img {
-    width: 18px;
-    height: 18px;
 
-    object-fit: contain;
-    display: block;
+.footer__bottom {
+    margin-top: 50px;
+    padding-top: 20px;
 
-    transition: transform 0.3s ease;
-}
+    border-top: 1px solid rgba(255, 255, 255, .12);
 
-
-
-.footer__copyright {
-    position: absolute;
-
-    right: calc(100vw * 45 / 1920);
-    bottom: calc(100vw * 68 / 1920);
-
-    margin: 0;
-
-    text-align: right;
-
-    font-size: 10px;
-
+    font-size: 11px;
     color: rgba(255, 255, 255, .35);
 }
 
@@ -441,78 +280,65 @@ const navigation = [
 
 @media(max-width:768px) {
 
-
     .footer {
-
-
         margin: 0 16px 16px;
-
-
         padding: 40px 24px;
-
-
+        border-radius: 20px;
     }
 
-
-
-    .footer__grid {
-
-
-        grid-template-columns: 1fr;
-
-
-        gap: 35px;
-
-
+    .footer__top {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "brand brand"
+            "nav nav"
+            "visit hours"
+            "social social";
+        column-gap: 20px;
+        row-gap: 30px;
     }
 
+    .footer__brand {
+        grid-area: brand;
+        justify-content: center;
+    }
 
+    .footer__nav {
+        grid-area: nav;
+    }
 
-    .footer__hours,
-    .footer__nav,
+    .footer__visit {
+        grid-area: visit;
+    }
+
+    .footer__hours-social {
+        display: contents;
+    }
+
+    .footer__hours {
+        grid-area: hours;
+    }
+
     .footer__social {
-
-
-        text-align: left;
-
+        grid-area: social;
+        margin-top: 0;
     }
 
-
-
-    .footer__icons {
-
-
-        justify-content: flex-start;
-
+    .footer__logo {
+        max-width: 230px;
     }
-
-
-
-    .footer__copyright {
-        position: static;
-
-        margin-top: 20px;
-
-        text-align: left;
-    }
-
 
     .footer__column h3 {
-
         font-size: 14px;
-
     }
-
 
     .footer__column p,
-    .footer__nav li {
-
-
+    .footer__nav-columns li {
         font-size: 12px;
-
     }
 
-
+    .footer__bottom {
+        margin-top: 35px;
+    }
 
 }
 </style>
