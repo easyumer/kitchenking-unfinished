@@ -11,7 +11,7 @@ const { fadeIn, slideInRight } = useAnimation()
     <div v-if="open" class="nav-overlay" role="dialog" aria-modal="true">
       <Motion as="div" v-bind="fadeIn" class="nav-overlay__backdrop" @click="emit('close')" />
 
-      <Motion as="div" v-bind="slideInRight" class="nav-overlay__panel">
+      <Motion as="div" v-bind="slideInRight" class="nav-overlay__panel" data-lenis-prevent>
         <PillButton variant="dark" class="nav-overlay__close" @click="emit('close')">
           <IconPlus class="nav-overlay__close-icon" />
           <span>Close</span>

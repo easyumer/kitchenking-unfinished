@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   ssr: true,
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['motion-v/nuxt', '@nuxt/fonts'],
+  modules: ['motion-v/nuxt', '@nuxt/fonts', 'lenis/nuxt'],
   css: ['~/assets/css/main.css'],
   components: [
     { path: '~/components', pathPrefix: false }

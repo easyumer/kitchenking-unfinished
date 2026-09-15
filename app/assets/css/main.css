@@ -46,8 +46,6 @@ html {
      `position: sticky` for every descendant on the page. */
   overflow-x: hidden;
   background: #050505;
-
-  scroll-behavior: smooth;
 }
 
 body {

@@ -9,7 +9,19 @@ Three docs, three jobs:
 
 **Maintenance contract:** if you do meaningful work on this project, update the "Current state" section below before you stop. An out-of-date log is worse than no log — it actively misleads whoever reads it next.
 
-Last updated: 2026-07-28.
+Last updated: 2026-09-15.
+
+---
+
+## Coming Soon splash page built (2026-09-15)
+
+`/coming-soon` is a standalone, bare splash page per its own client design (gold gradient background, centered logo/headline/email-capture, no site chrome) — distinct from `ComingSoonSection` (the generic "this route isn't built yet" placeholder still used by `/gallery`, `/contact`, `/portfolio`, `/merge`; do not repurpose that component for this page).
+
+- **`app/pages/coming-soon.vue`** now renders only `ComingSoonSplashSection`.
+- **`app/components/sections/ComingSoonSplashSection.vue`**: full-viewport gold gradient (`--color-gold-light` → `--color-gold`) section with the "Kitchen King black Logo.png" mark, "Something's Cooking!" heading, description, and `NotifyForm`.
+- **`app/components/ui/NotifyForm.vue`**: email input + "Notify Me" button (row on desktop, stacked on mobile). Purely client-side — emits a `submit` event and swaps to a local thank-you message; there's no backend endpoint yet (see `server/README.md`), so nothing is actually persisted or sent. Wire it up once a real capture endpoint exists.
+- **`app/app.vue`**: added `isBareLayout` (true when `route.path === '/coming-soon'`) to conditionally skip mounting `AppTimings`/`AppHeader`/`NavOverlay` — this is the one route with no site chrome in its design. Every other route is unaffected.
+- `ComingSoonHeroSection.vue` (food-truck image, unused/unreferenced anywhere) was left untouched — it predates this work and its intended purpose was never clear from the code alone.
 
 ---
 
