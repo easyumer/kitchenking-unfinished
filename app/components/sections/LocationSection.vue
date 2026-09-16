@@ -6,6 +6,8 @@ import 'leaflet/dist/leaflet.css'
 
 import frameIcon from '~/assets/images/Frame.png'
 import mapIconPlaceholder from '~/assets/images/logos/Map Icon Placeholder.svg'
+import googleMapLogo from '~/assets/images/logos/google-maps-logo.png'
+import appleMapLogo from '~/assets/images/logos/apple maps icon.png'
 import { onMounted, onUnmounted } from 'vue'
 
 
@@ -115,13 +117,13 @@ onUnmounted(() => {
                     <a href="https://www.google.com/maps/search/?api=1&query=West+Bay+Street+Nassau+Bahamas"
                         target="_blank" rel="noopener noreferrer" class="location__map-link">
                         SHOW ON GOOGLE MAPS
-                        <img :src="mapIconPlaceholder" alt="" class="location__map-link-icon" />
+                        <img :src="googleMapLogo" alt="" class="location__map-link-icon" />
                     </a>
 
                     <a href="https://maps.apple.com/?q=West+Bay+Street+Nassau+Bahamas" target="_blank"
                         rel="noopener noreferrer" class="location__map-link">
                         SHOW ON APPLE MAPS
-                        <img :src="mapIconPlaceholder" alt="" class="location__map-link-icon" />
+                        <img :src="appleMapLogo" alt="" class="location__map-link-icon" />
                     </a>
 
                 </div>
