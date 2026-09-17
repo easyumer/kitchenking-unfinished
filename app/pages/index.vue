@@ -10,12 +10,14 @@ useSeoMeta({
 <template>
   <main id="home" class="home">
     <HeroSection />
+    <AboutStoryBackdrop>
     <StorySection />
     <ExploreMenuSection />
     <BestsellersSection />
     <DealsSection />
     <FreshTakeSection />
     <InstagramSection />
+    </AboutStoryBackdrop>
     <LocationSection />
     <FaqSection />
     <FooterSection />

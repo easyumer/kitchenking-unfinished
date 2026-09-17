@@ -16,7 +16,9 @@ defineEmits(['prev', 'next'])
       :disabled="prevDisabled"
       @click="$emit('prev')"
     >
-      <IconArrowUpRight class="carousel-nav__icon carousel-nav__icon--prev" />
+      <slot name="prev-icon">
+        <IconArrowUpRight class="carousel-nav__icon carousel-nav__icon--prev" />
+      </slot>
     </button>
     <button
       class="carousel-nav__btn"
@@ -25,7 +27,9 @@ defineEmits(['prev', 'next'])
       :disabled="nextDisabled"
       @click="$emit('next')"
     >
-      <IconArrowUpRight class="carousel-nav__icon" />
+      <slot name="next-icon">
+        <IconArrowUpRight class="carousel-nav__icon" />
+      </slot>
     </button>
   </div>
 </template>

@@ -6,10 +6,21 @@ useSeoMeta({
 </script>
 
 <template>
-  <main>
-    <ComingSoonSection
-      title="Gallery"
-      description="Our photo gallery is being put together. Check back soon for a look inside Kitchen King."
-    />
+  <main id="gallery" class="gallery">
+    <GalleryHeroSection />
+    <AboutStoryBackdrop>
+    <GalleryCookingSection />
+    <GalleryExperienceSection />
+    <InstagramSection />
+    </AboutStoryBackdrop>
+    <LocationSection />
+    <FaqSection />
+    <FooterSection />
   </main>
 </template>
+
+<style scoped>
+.gallery {
+  min-height: 100vh;
+}
+</style>
