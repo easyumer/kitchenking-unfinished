@@ -32,8 +32,9 @@ const { fadeUp } = useAnimation()
   align-items: flex-start;
   gap: calc(100vw * 48 / 1920);
   padding: calc(100vw * 40 / 1920) calc(100vw * 48 / 1920) calc(100vw * 260 / 1920);
-  overflow: visible;
-  margin-bottom: -250px;
+  overflow-x: clip;
+  overflow-y: visible;
+  margin-bottom: -350px;
   z-index: 2;
 }
 
@@ -81,6 +82,7 @@ const { fadeUp } = useAnimation()
     gap: 32px;
     padding: 0 20px 200px;
     margin-top: -40px;
+    margin-bottom: -250px;
   }
 
   .fresh__heading {
