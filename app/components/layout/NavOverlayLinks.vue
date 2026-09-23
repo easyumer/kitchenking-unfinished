@@ -7,7 +7,7 @@ const navLinks = [
   { label: 'Our Menu', to: '/menu', strong: true },
   { label: 'Gallery', to: '/gallery' },
   { label: 'About', to: '/about' },
-  { label: 'Portfolio', to: '/portfolio' },
+  //{ label: 'Portfolio', to: '/portfolio' },
   { label: 'Contact', to: '/contact' }
 ]
 
